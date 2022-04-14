@@ -1,0 +1,1 @@
+import{_ as n,c as a,o as s,d as e}from"./app.00f96e96.js";const _='{"title":"node\u4F7F\u7528babel","description":"","frontmatter":{},"headers":[],"relativePath":"src/frontend/node/node\u4F7F\u7528babel.md","lastUpdated":1649840977597}',t={},o=e("",4),p=[o];function r(l,c,u,i,d,b){return s(),a("div",null,p)}var q=n(t,[["render",r]]);export{_ as __pageData,q as default};
