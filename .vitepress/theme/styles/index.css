@@ -1,0 +1,38 @@
+:root {
+  /* --c-text: red!important; */
+  --c-brand: #2A5BB8;
+  --c-brand-light: #2553ab;
+  --pre-code-font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+@media (max-width: 750px) {
+  p, ol, ul {
+    margin: 0.5rem 0;
+  }
+  [class*='language-'] pre {
+    padding: 6px 14px!important;
+  }
+  h3 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+  }
+  h2 {
+    margin-top: 1.55rem;
+    font-size: 1.35rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  body {
+    font-size: 15px;
+  }
+}

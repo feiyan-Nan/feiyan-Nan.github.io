@@ -1,0 +1,1 @@
+## 目录[一、系统知识](linux-01%20系统知识.md)[二、基本操作](linux-02%20基本操作.md)[三、文件操作](linux-03%20文件操作.md)[四、vim编辑器](linux-04%20vim编辑器.md)[五、基本管理](linux-05%20基本管理.md)[六、shell基础](linux-06%20shell基础.md)[七、shell语句](linux-07%20shell语句.md)[八、linux常用](linux常用.md)[九、nginx配置](nginx配置.md)[十、ubuntu教程](ubuntu教程.md)[十一、宝塔面板搭建服务器](宝塔面板搭建服务器.md)
