@@ -145,7 +145,7 @@ if(!arr.length) return true //true必须填写 否则报错;
 
 原因：是因为第一次没有拿到数据就去渲染了，所以数据不是最新的，延时一下就解决了；
 
-![image](https://notecdn.hrhe.cn//images/docs/react/react-09_项目优化、项目坑-01.png)
+![image](//images/docs/react/react-09_项目优化、项目坑-01.png)
 
 
 

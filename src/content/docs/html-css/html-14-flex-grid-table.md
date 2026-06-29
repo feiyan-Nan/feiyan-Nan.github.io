@@ -77,7 +77,7 @@ display: -ms-box;
 
 ## 三、新版弹性盒子
 
-![image-20200803112513487](https://notecdn.hrhe.cn//images/docs/html-css/image-20200803112513487.png)
+![image-20200803112513487](//images/docs/html-css/image-20200803112513487.png)
 
 弹性盒子的定义
 
@@ -478,11 +478,11 @@ grid-column: auto / span 2  // 向左跨越2列
 
 `display: table-cell`；给包裹元素设置；
 
-![image](https://notecdn.hrhe.cn//images/docs/html-css/html-14_flex、grid、table-01.png)
+![image](//images/docs/html-css/html-14_flex、grid、table-01.png)
 
 一般用于这种布局；设置了table-cell之后，需要设置vertical:属性；
 
-![image](https://notecdn.hrhe.cn//images/docs/html-css/html-14_flex、grid、table-02.png)
+![image](//images/docs/html-css/html-14_flex、grid、table-02.png)
 
 ```html
 <div class="container">

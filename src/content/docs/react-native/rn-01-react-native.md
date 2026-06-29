@@ -120,8 +120,8 @@ soure={{uri:图片地址}}
 ```json
 maven{ url "http://maven.aliyun.com/nexus/content/groups/public/" }
 ```
-![image](https://notecdn.hrhe.cn//images/docs/react-native/rn-01_react-native-01.png)
+![image](//images/docs/react-native/rn-01_react-native-01.png)
 
-![image](https://notecdn.hrhe.cn//images/docs/react-native/rn-01_react-native-02.png)
+![image](//images/docs/react-native/rn-01_react-native-02.png)
 
-![image](https://notecdn.hrhe.cn//images/docs/react-native/rn-01_react-native-03.png)
+![image](//images/docs/react-native/rn-01_react-native-03.png)

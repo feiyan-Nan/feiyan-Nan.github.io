@@ -212,7 +212,7 @@ document.addEventListener("visibilitychange", () => {
 ## 十、页面方向陀螺仪
 deviceOrientation（如果IOS失效，可以将域名协议改为https）
 
-![image](https://notecdn.hrhe.cn//images/docs/javascript/js-10_BOM-01.png)
+![image](//images/docs/javascript/js-10_BOM-01.png)
 
 从左到右分别为alpha、beta、gamma
 ```js
@@ -244,7 +244,7 @@ notice.onclick = () => {
     window.open(notice.data.url); // 当用户点击通知时，在浏览器打开百度网站
 }
 ```
-![image](https://notecdn.hrhe.cn//images/docs/javascript/js-10_BOM-02.png)
+![image](//images/docs/javascript/js-10_BOM-02.png)
 
 注意：想要成功的调起通知，首先要用户的授权✅
 ```js
@@ -383,7 +383,7 @@ document.documentElement || document.body.parentNode;   //两种方式；兼容
 
 
 
-![image](https://notecdn.hrhe.cn//images/docs/javascript/js-10_BOM-03.png)
+![image](//images/docs/javascript/js-10_BOM-03.png)
 
 
 
@@ -406,7 +406,7 @@ document.documentElement || document.body.parentNode;   //两种方式；兼容
 ```
 注意：top是距离文档顶部的距离，y则是距离可视窗口（浏览器屏幕）的顶部距离，如果浏览器滚动，top值不变，y值会变 ✅
 
-![image](https://notecdn.hrhe.cn//images/docs/javascript/js-10_BOM-04.png)
+![image](//images/docs/javascript/js-10_BOM-04.png)
 
 
 

@@ -24,7 +24,7 @@ I/O操作：I(input)  O(output)   输入输出；
 在输入的时候，内存开始工作，之后解析到cpu，如果内存小了，输入的东西多了，就会开始变卡，所以可以适当的加大内存，当然cpu也需要支持才行；当输出保存之后就会存入到硬盘，所以如果没保存则数据就会丢
 失；
 
-![image](https://notecdn.hrhe.cn//images/docs/es6/es6-04%20解决异步问题-01.png)
+![image](//images/docs/es6/es6-04%20解决异步问题-01.png)
 
 
 
@@ -307,10 +307,10 @@ yield表达式只能generator函数使用，yield*函数名，可以遍历另外
 
 2. ajax的原理
 
-![image](https://notecdn.hrhe.cn//images/docs/es6/es6-04%20解决异步问题-02.png)
+![image](//images/docs/es6/es6-04%20解决异步问题-02.png)
 
 
 generator结合ajax
 
-![image](https://notecdn.hrhe.cn//images/docs/es6/es6-04%20解决异步问题-03.png)
+![image](//images/docs/es6/es6-04%20解决异步问题-03.png)
 

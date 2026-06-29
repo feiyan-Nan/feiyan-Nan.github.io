@@ -111,7 +111,7 @@ $.ajax({
     }
 });
 ```
-![image](https://notecdn.hrhe.cn//images/docs/jquery/jq-05_ajax_自定义jquery插件-01.png)
+![image](//images/docs/jquery/jq-05_ajax_自定义jquery插件-01.png)
 3. jsonp方式及其原理解析；
 ```js
 // 请求的 url 地址

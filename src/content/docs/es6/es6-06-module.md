@@ -99,7 +99,7 @@ console.log(all)
 // 传入之后会返回导出的该文件;就是requireAll的单个对象
 context(context.keys()[0]) 
 ```
-![image](https://notecdn.hrhe.cn//images/docs/es6/es6-06%20module-01.png)
+![image](//images/docs/es6/es6-06%20module-01.png)
 
 3. Vue全局组件注册
 

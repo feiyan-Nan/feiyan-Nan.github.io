@@ -9,7 +9,7 @@ order: 99
 1. 转到文件->偏好设置->图像
 2. 按照以下示例，首先选好对应的上传服务，之后再下载更新文件
 
-![image](https://notecdn.hrhe.cn//images/docs/other/Typora设置-01.png)
+![image](//images/docs/other/Typora设置-01.png)
 
 3. 打开配置文件；
    * repo输入格式：heny/h-note，前者为github用户名, 后者为目录名
@@ -35,7 +35,7 @@ order: 99
 4. 进入github，按照以下操作
    * 点击头像-->点击settings-->点击Developer settings-->点击Personal  access tokens-->点击create new token-->输入token的名字-->仅勾选repo选项即可；
 
-![image](https://notecdn.hrhe.cn//images/docs/other/Typora设置-02.png)
+![image](//images/docs/other/Typora设置-02.png)
 
 之后点击创建，复制给出的token，token刷新之后再也无法看见，注意保存好，最后将token输入到配置文件的对应位置即可；
 

@@ -137,13 +137,13 @@ If-None-Match：再次请求服务器，通知服务器客户端缓存数据；
 
 浏览器发起请求时：
 
-![image](http://notecdn.hrhe.cn//images/docs/javascript/%E7%BC%93%E5%AD%98%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82.png)
+![image](//images/docs/javascript/%E7%BC%93%E5%AD%98%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82.png)
 
 
 
 浏览器再次请求时：
 
-![image](http://notecdn.hrhe.cn//images/docs/javascript/%E7%BC%93%E5%AD%98%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%8D%E6%AC%A1%E8%AF%B7%E6%B1%82.png)()
+![image](//images/docs/javascript/%E7%BC%93%E5%AD%98%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%8D%E6%AC%A1%E8%AF%B7%E6%B1%82.png)()
 
 
 

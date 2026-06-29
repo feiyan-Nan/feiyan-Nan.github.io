@@ -86,7 +86,7 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 
 
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-01.png)
+![image](//images/docs/other/VuePress搭建个人博客-01.png)
 
 
 
@@ -127,7 +127,7 @@ module.exports = {
 }
 ```
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-02.png)
+![image](//images/docs/other/VuePress搭建个人博客-02.png)
 
 
 
@@ -199,7 +199,7 @@ nav:[{
 }]  // 可以在items继续套分组;
 ```
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-03.png)
+![image](//images/docs/other/VuePress搭建个人博客-03.png)
 
 
 
@@ -223,9 +223,9 @@ Danger zone, do not proceed
 :::
 ```
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-04.png)
+![image](//images/docs/other/VuePress搭建个人博客-04.png)
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-05.png)
+![image](//images/docs/other/VuePress搭建个人博客-05.png)
 
 代码块中的行高亮
 
@@ -295,7 +295,7 @@ layout: custom //填写components文件夹下的文件名字
 
 可以直接使用element的组件，也可以直接使用component下的全局组件；
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-06.png)
+![image](//images/docs/other/VuePress搭建个人博客-06.png)
 
 
 
@@ -341,9 +341,9 @@ layout: custom //填写components文件夹下的文件名字
 
 ## 转发域名
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-08.png)
+![image](//images/docs/other/VuePress搭建个人博客-08.png)
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VuePress搭建个人博客-09.png)
+![image](//images/docs/other/VuePress搭建个人博客-09.png)
 
 
 

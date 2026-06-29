@@ -112,7 +112,7 @@ mark用来标记文字。
 <p><time>04月15号</time>今天<mark>学习</mark>HTML5</p>
 ```
 
-![image](https://notecdn.hrhe.cn//images/docs/html-css/html-12_HTML5-01.png)
+![image](//images/docs/html-css/html-12_HTML5-01.png)
 
 
 

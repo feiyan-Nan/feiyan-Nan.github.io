@@ -177,7 +177,7 @@ typings install dt~lodash --global
 
 ## 添加右键vscode打开
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VScode使用技巧-01.png)
+![image](//images/docs/other/VScode使用技巧-01.png)
 
 1. 新建1.reg（一样要是reg后缀）
 2. 找到VsCode安装目录，替换即可
@@ -362,7 +362,7 @@ trim_trailing_whitespace = false
 }
 ```
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VScode使用技巧-02.png)
+![image](//images/docs/other/VScode使用技巧-02.png)
 
 
 
@@ -383,7 +383,7 @@ trim_trailing_whitespace = false
 
 可以直接在文件右侧点击红色小点，也可以直接填写debugger，打完断点就可以按f5开始了，操作和chrome的断点操作是一样的；
 
-![image](https://notecdn.hrhe.cn//images/docs/other/VScode使用技巧-03.png)
+![image](//images/docs/other/VScode使用技巧-03.png)
 
 
 

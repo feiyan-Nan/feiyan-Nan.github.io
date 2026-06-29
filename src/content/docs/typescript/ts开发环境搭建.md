@@ -11,7 +11,7 @@ order: 99
 
 ## TS大纲
 
-![image-20200602223954793](https://notecdn.hrhe.cn//images/docs/typescript/image-20200602223954793.png)
+![image-20200602223954793](//images/docs/typescript/image-20200602223954793.png)
 
 
 

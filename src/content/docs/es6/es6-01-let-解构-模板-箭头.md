@@ -6,7 +6,7 @@ order: 1
 
 ## es6大纲
 
-![image-20200602224917632](https://notecdn.hrhe.cn//images/docs/es6/image-20200602224917632.png)
+![image-20200602224917632](//images/docs/es6/image-20200602224917632.png)
 
 ## 一、严格模式：
 
