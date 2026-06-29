@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_TITLE } from '../../../consts';
+import { CATEGORIES } from '../../../data/categories';
+
+export function getStaticPaths() {
+	return CATEGORIES.map((cat) => ({ params: { category: cat.slug } }));
+}
+
+const { category } = Astro.params;
+const catInfo = CATEGORIES.find((c) => c.slug === category)!;
+const allDocs = await getCollection('docs');
+const docs = allDocs
+	.filter((d) => d.data.category === category)
+	.sort((a, b) => a.data.order - b.data.order);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`${catInfo.name} - ${SITE_TITLE}`} description={catInfo.description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<a href="/docs" class="back-link">&larr; 全部笔记</a>
+				<div class="title-row">
+					<span class="icon">{catInfo.icon}</span>
+					<div>
+						<h1>{catInfo.name}</h1>
+						<p>{catInfo.description}</p>
+					</div>
+				</div>
+			</div>
+			<div class="doc-grid">
+				{docs.map((doc, i) => (
+					<a href={`/docs/${category}/${doc.id.split('/').pop()}`} class="doc-card">
+						<span class="doc-num">{String(i + 1).padStart(2, '0')}</span>
+						<span class="doc-title">{doc.data.title}</span>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.page-header {
+		padding: 2rem 0 1.5rem;
+		border-bottom: 1px solid var(--border);
+		margin-bottom: 2rem;
+	}
+
+	.back-link {
+		display: inline-block;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+		margin-bottom: 1rem;
+	}
+
+	.back-link:hover {
+		color: var(--accent);
+	}
+
+	.title-row {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.icon {
+		font-size: 2.5rem;
+	}
+
+	.title-row h1 {
+		font-size: 1.75rem;
+		font-weight: 800;
+		margin-bottom: 0.25rem;
+	}
+
+	.title-row p {
+		margin: 0;
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+	}
+
+	.doc-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 0.375rem;
+		padding-bottom: 2rem;
+	}
+
+	.doc-card {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.875rem 1rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid transparent;
+		color: var(--text);
+		transition: all 0.15s;
+	}
+
+	.doc-card:hover {
+		color: var(--text);
+		background: var(--bg-muted);
+		border-color: var(--border);
+	}
+
+	.doc-num {
+		font-size: 0.78rem;
+		font-weight: 700;
+		color: var(--text-muted);
+		font-variant-numeric: tabular-nums;
+		min-width: 1.5rem;
+	}
+
+	.doc-title {
+		font-size: 0.95rem;
+		font-weight: 500;
+	}
+
+	.doc-card:hover .doc-title {
+		color: var(--accent);
+	}
+</style>

@@ -1,0 +1,15 @@
+export const CATEGORIES = [
+  { slug: 'html-css', name: 'HTML/CSS', icon: '🎨', description: 'HTML5、CSS3、布局、动画等基础知识' },
+  { slug: 'javascript', name: 'JavaScript', icon: '⚡', description: 'JavaScript 核心语法、DOM、BOM、设计模式' },
+  { slug: 'es6', name: 'ES6+', icon: '🚀', description: 'ES6+ 新特性：Promise、async/await、Proxy 等' },
+  { slug: 'typescript', name: 'TypeScript', icon: '🔷', description: 'TypeScript 类型系统、泛型、装饰器' },
+  { slug: 'react', name: 'React', icon: '⚛️', description: 'React 组件、Hooks、Redux、服务端渲染' },
+  { slug: 'vue', name: 'Vue', icon: '💚', description: 'Vue2/Vue3、Router、Vuex、组件开发' },
+  { slug: 'nodejs', name: 'Node.js', icon: '🟢', description: 'Node.js、Express、MongoDB、WebSocket' },
+  { slug: 'webpack', name: 'Webpack', icon: '📦', description: 'Webpack 配置、优化、原理' },
+  { slug: 'server', name: 'Linux/服务器', icon: '🖥️', description: 'Linux 操作、Shell、Nginx、服务器部署' },
+  { slug: 'jquery', name: 'jQuery', icon: '🔌', description: 'jQuery 选择器、事件、动画、Ajax' },
+  { slug: 'mini-program', name: '小程序', icon: '📱', description: '微信小程序开发、组件、API' },
+  { slug: 'react-native', name: 'React Native', icon: '📲', description: 'React Native 移动端开发' },
+  { slug: 'other', name: '其他笔记', icon: '📝', description: 'Git、工具技巧、Canvas、面试复习' },
+];

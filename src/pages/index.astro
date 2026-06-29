@@ -1,49 +1,166 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { CATEGORIES } from '../data/categories';
+
+const allDocs = await getCollection('docs');
+const countByCategory = CATEGORIES.map((cat) => ({
+	...cat,
+	count: allDocs.filter((d) => d.data.category === cat.slug).length,
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<div class="hero-inner">
+					<h1>前端开发知识库</h1>
+					<p class="hero-desc">
+						系统化整理前端技术栈笔记，从基础到进阶，涵盖 {allDocs.length} 篇文档
+					</p>
+				</div>
+			</section>
+
+			<section class="categories">
+				<div class="categories-inner">
+					<h2 class="section-title">技术分类</h2>
+					<div class="grid">
+						{countByCategory.map((cat) => (
+							<a href={`/docs/${cat.slug}`} class="card">
+								<span class="card-icon">{cat.icon}</span>
+								<div class="card-body">
+									<h3>{cat.name}</h3>
+									<p>{cat.description}</p>
+									<span class="card-count">{cat.count} 篇</span>
+								</div>
+							</a>
+						))}
+					</div>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		min-height: calc(100vh - 64px - 100px);
+	}
+
+	.hero {
+		background: linear-gradient(135deg, var(--accent-bg) 0%, var(--bg) 100%);
+		border-bottom: 1px solid var(--border-light);
+	}
+
+	.hero-inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 4rem 1.5rem;
+		text-align: center;
+	}
+
+	.hero h1 {
+		font-size: 2.75rem;
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1rem;
+	}
+
+	.hero-desc {
+		font-size: 1.15rem;
+		color: var(--text-secondary);
+		max-width: 540px;
+		margin: 0 auto;
+		line-height: 1.6;
+	}
+
+	.categories-inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 3rem 1.5rem;
+	}
+
+	.section-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+
+	.card {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		padding: 1.25rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: var(--bg);
+		color: var(--text);
+		transition: all 0.2s ease;
+	}
+
+	.card:hover {
+		color: var(--text);
+		border-color: var(--accent-light);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.card-icon {
+		font-size: 2rem;
+		line-height: 1;
+		flex-shrink: 0;
+		margin-top: 0.125rem;
+	}
+
+	.card-body h3 {
+		font-size: 1.05rem;
+		font-weight: 650;
+		margin-bottom: 0.375rem;
+	}
+
+	.card-body p {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		margin: 0 0 0.5rem;
+		line-height: 1.5;
+	}
+
+	.card-count {
+		font-size: 0.78rem;
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.hero h1 {
+			font-size: 2rem;
+		}
+
+		.hero-inner {
+			padding: 2.5rem 1.5rem;
+		}
+
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

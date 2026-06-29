@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { CATEGORIES } from '../../data/categories';
+
+const allDocs = await getCollection('docs');
+const categoriesWithDocs = CATEGORIES.map((cat) => ({
+	...cat,
+	docs: allDocs
+		.filter((d) => d.data.category === cat.slug)
+		.sort((a, b) => a.data.order - b.data.order),
+})).filter((c) => c.docs.length > 0);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`全部笔记 - ${SITE_TITLE}`} description="全部前端开发笔记" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>全部笔记</h1>
+				<p>{allDocs.length} 篇文档，{categoriesWithDocs.length} 个分类</p>
+			</div>
+			<div class="content">
+				{categoriesWithDocs.map((cat) => (
+					<section class="category-section">
+						<a href={`/docs/${cat.slug}`} class="category-header">
+							<span class="cat-icon">{cat.icon}</span>
+							<h2>{cat.name}</h2>
+							<span class="cat-count">{cat.docs.length}</span>
+						</a>
+						<ul class="doc-list">
+							{cat.docs.map((doc) => (
+								<li>
+									<a href={`/docs/${doc.data.category}/${doc.id.split('/').pop()}`}>
+										{doc.data.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.page-header {
+		padding: 2.5rem 0 1.5rem;
+		border-bottom: 1px solid var(--border);
+		margin-bottom: 2rem;
+	}
+
+	.page-header h1 {
+		font-size: 2rem;
+		font-weight: 800;
+		margin-bottom: 0.5rem;
+	}
+
+	.page-header p {
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.content {
+		display: grid;
+		gap: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.category-header {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		color: var(--text);
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid var(--border);
+		margin-bottom: 0.5rem;
+	}
+
+	.category-header:hover {
+		color: var(--accent);
+	}
+
+	.cat-icon {
+		font-size: 1.35rem;
+	}
+
+	.category-header h2 {
+		font-size: 1.25rem;
+		font-weight: 700;
+		flex: 1;
+	}
+
+	.cat-count {
+		font-size: 0.8rem;
+		background: var(--bg-muted);
+		padding: 0.2em 0.65em;
+		border-radius: 999px;
+		color: var(--text-secondary);
+		font-weight: 600;
+	}
+
+	.doc-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 0.25rem;
+	}
+
+	.doc-list li a {
+		display: block;
+		padding: 0.5rem 0.75rem;
+		border-radius: var(--radius-sm);
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		transition: all 0.15s;
+	}
+
+	.doc-list li a:hover {
+		background: var(--bg-muted);
+		color: var(--accent);
+	}
+</style>
