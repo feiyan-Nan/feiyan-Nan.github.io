@@ -1,0 +1,560 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`关于我 - ${SITE_TITLE}`} description="前端工程师，热爱技术，持续学习" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="hero">
+				<div class="hero-inner">
+					<div class="avatar">
+						<span class="avatar-text">F</span>
+						<div class="avatar-ring"></div>
+					</div>
+					<h1>FeiYan</h1>
+					<p class="tagline">前端工程师 · 终身学习者 · 开源爱好者</p>
+					<div class="social-links">
+						<a href="https://github.com/feiyan-Nan" target="_blank" class="social-btn" aria-label="GitHub">
+							<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
+								<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+							</svg>
+							<span>GitHub</span>
+						</a>
+						<a href="mailto:liguigong@shopline.com" class="social-btn" aria-label="Email">
+							<svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+								<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+								<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+							</svg>
+							<span>Email</span>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- 关于 -->
+			<section class="section">
+				<div class="section-inner">
+					<div class="about-card">
+						<h2>
+							<span class="section-icon">
+								<svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+							</span>
+							关于我
+						</h2>
+						<p>
+							一名专注于前端领域的工程师，对构建高性能、可维护的 Web 应用有着持续的热情。
+							擅长从 0 到 1 搭建项目架构，对前端工程化、组件设计、性能优化有深入理解。
+						</p>
+						<p>
+							相信好的代码应该像好的文章一样 —— 清晰、简洁、优雅。
+							在日常工作之余，喜欢通过写技术笔记来系统化自己的知识体系，也希望能帮助到更多的开发者。
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- 技术栈 -->
+			<section class="section section-alt">
+				<div class="section-inner">
+					<h2>
+						<span class="section-icon">
+							<svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+						</span>
+						技术栈
+					</h2>
+					<div class="skills-grid">
+						<div class="skill-group">
+							<h3>前端核心</h3>
+							<div class="tags">
+								<span class="tag">JavaScript</span>
+								<span class="tag">TypeScript</span>
+								<span class="tag">HTML5</span>
+								<span class="tag">CSS3</span>
+								<span class="tag">ES6+</span>
+							</div>
+						</div>
+						<div class="skill-group">
+							<h3>框架 & 库</h3>
+							<div class="tags">
+								<span class="tag">React</span>
+								<span class="tag">Vue</span>
+								<span class="tag">Next.js</span>
+								<span class="tag">Astro</span>
+								<span class="tag">Node.js</span>
+							</div>
+						</div>
+						<div class="skill-group">
+							<h3>工程化</h3>
+							<div class="tags">
+								<span class="tag">Webpack</span>
+								<span class="tag">Vite</span>
+								<span class="tag">Git</span>
+								<span class="tag">CI/CD</span>
+								<span class="tag">Docker</span>
+							</div>
+						</div>
+						<div class="skill-group">
+							<h3>其他</h3>
+							<div class="tags">
+								<span class="tag">性能优化</span>
+								<span class="tag">组件设计</span>
+								<span class="tag">微前端</span>
+								<span class="tag">监控体系</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 时间线 -->
+			<section class="section">
+				<div class="section-inner">
+					<h2>
+						<span class="section-icon">
+							<svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+						</span>
+						成长历程
+					</h2>
+					<div class="timeline">
+						<div class="timeline-item">
+							<div class="timeline-dot"></div>
+							<div class="timeline-content">
+								<span class="timeline-date">至今</span>
+								<h3>高级前端工程师</h3>
+								<p>负责核心业务系统的前端架构设计与技术选型，推动团队工程化建设与代码质量提升</p>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-dot"></div>
+							<div class="timeline-content">
+								<span class="timeline-date">持续</span>
+								<h3>技术写作与知识分享</h3>
+								<p>系统化整理前端技术栈笔记，构建个人知识库，在实践中沉淀方法论</p>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-dot"></div>
+							<div class="timeline-content">
+								<span class="timeline-date">起点</span>
+								<h3>踏入前端开发</h3>
+								<p>从第一行 HTML 开始，逐步深入 JavaScript 世界，开启技术探索之旅</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 理念 -->
+			<section class="section section-alt">
+				<div class="section-inner">
+					<h2>
+						<span class="section-icon">
+							<svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM4 11a1 1 0 100-2H3a1 1 0 000 2h1zM10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z"/></svg>
+						</span>
+						技术理念
+					</h2>
+					<div class="principles-grid">
+						<div class="principle-card">
+							<div class="principle-num">01</div>
+							<h3>简洁至上</h3>
+							<p>代码的价值在于解决问题，而非展示复杂度。最好的架构是刚好够用的架构。</p>
+						</div>
+						<div class="principle-card">
+							<div class="principle-num">02</div>
+							<h3>持续迭代</h3>
+							<p>技术在变，需求在变，不变的是持续学习和改进的心态。保持好奇，拥抱变化。</p>
+						</div>
+						<div class="principle-card">
+							<div class="principle-num">03</div>
+							<h3>知行合一</h3>
+							<p>理论指导实践，实践验证理论。写下来、做出来、分享出去，才是真正的掌握。</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		min-height: calc(100vh - 64px - 100px);
+	}
+
+	/* Hero */
+	.hero {
+		background: linear-gradient(135deg, var(--accent-bg) 0%, var(--bg) 50%, var(--accent-bg) 100%);
+		border-bottom: 1px solid var(--border-light);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+					radial-gradient(circle at 70% 50%, rgba(129, 140, 248, 0.04) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.hero-inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 5rem 1.5rem 4rem;
+		text-align: center;
+		position: relative;
+	}
+
+	.avatar {
+		width: 120px;
+		height: 120px;
+		margin: 0 auto 1.5rem;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.avatar-text {
+		width: 100px;
+		height: 100px;
+		background: linear-gradient(135deg, var(--accent), var(--accent-light));
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 2.5rem;
+		font-weight: 800;
+		position: relative;
+		z-index: 1;
+		box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
+	}
+
+	.avatar-ring {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		border: 2px solid var(--accent-light);
+		opacity: 0.3;
+		animation: pulse-ring 3s ease-in-out infinite;
+	}
+
+	@keyframes pulse-ring {
+		0%, 100% { transform: scale(1); opacity: 0.3; }
+		50% { transform: scale(1.08); opacity: 0.15; }
+	}
+
+	.hero h1 {
+		font-size: 2.5rem;
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 0.5rem;
+	}
+
+	.tagline {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin-bottom: 1.75rem;
+		letter-spacing: 0.02em;
+	}
+
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.social-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.625rem 1.25rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--bg);
+		color: var(--text-secondary);
+		font-size: 0.875rem;
+		font-weight: 500;
+		transition: all 0.2s ease;
+	}
+
+	.social-btn:hover {
+		color: var(--accent);
+		border-color: var(--accent-light);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-1px);
+	}
+
+	/* Sections */
+	.section {
+		padding: 0;
+	}
+
+	.section-alt {
+		background: var(--bg-soft);
+	}
+
+	.section-inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 4rem 1.5rem;
+	}
+
+	.section-inner h2 {
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin-bottom: 2rem;
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+	}
+
+	.section-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		background: var(--accent-bg);
+		color: var(--accent);
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+
+	/* About Card */
+	.about-card {
+		background: var(--bg);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 2rem;
+	}
+
+	.about-card h2 {
+		margin-bottom: 1.25rem;
+	}
+
+	.about-card p {
+		color: var(--text-secondary);
+		line-height: 1.8;
+		margin: 0 0 1rem;
+		font-size: 0.95rem;
+	}
+
+	.about-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Skills */
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.skill-group {
+		background: var(--bg);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1.5rem;
+	}
+
+	.skill-group h3 {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		margin-bottom: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tag {
+		display: inline-block;
+		padding: 0.375rem 0.875rem;
+		background: var(--accent-bg);
+		color: var(--accent-dark);
+		border-radius: 999px;
+		font-size: 0.825rem;
+		font-weight: 550;
+		transition: all 0.2s ease;
+	}
+
+	.tag:hover {
+		background: var(--accent);
+		color: white;
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	/* Timeline */
+	.timeline {
+		position: relative;
+		padding-left: 2rem;
+	}
+
+	.timeline::before {
+		content: '';
+		position: absolute;
+		left: 7px;
+		top: 8px;
+		bottom: 8px;
+		width: 2px;
+		background: linear-gradient(to bottom, var(--accent-light), var(--border));
+		border-radius: 1px;
+	}
+
+	.timeline-item {
+		position: relative;
+		padding-bottom: 2.25rem;
+	}
+
+	.timeline-item:last-child {
+		padding-bottom: 0;
+	}
+
+	.timeline-dot {
+		position: absolute;
+		left: -2rem;
+		top: 6px;
+		width: 16px;
+		height: 16px;
+		background: var(--bg);
+		border: 3px solid var(--accent);
+		border-radius: 50%;
+		z-index: 1;
+	}
+
+	.timeline-item:first-child .timeline-dot {
+		background: var(--accent);
+		box-shadow: 0 0 0 4px var(--accent-bg);
+	}
+
+	.timeline-content {
+		background: var(--bg);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1.25rem 1.5rem;
+		transition: all 0.2s ease;
+	}
+
+	.timeline-content:hover {
+		border-color: var(--accent-light);
+		box-shadow: var(--shadow-md);
+	}
+
+	.timeline-date {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--accent);
+		background: var(--accent-bg);
+		padding: 0.2rem 0.625rem;
+		border-radius: 999px;
+		margin-bottom: 0.5rem;
+	}
+
+	.timeline-content h3 {
+		font-size: 1.05rem;
+		font-weight: 650;
+		margin-bottom: 0.375rem;
+	}
+
+	.timeline-content p {
+		color: var(--text-secondary);
+		font-size: 0.875rem;
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	/* Principles */
+	.principles-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.principle-card {
+		background: var(--bg);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1.75rem;
+		transition: all 0.2s ease;
+	}
+
+	.principle-card:hover {
+		border-color: var(--accent-light);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.principle-num {
+		font-size: 2rem;
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--accent), var(--accent-light));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1;
+		margin-bottom: 0.75rem;
+	}
+
+	.principle-card h3 {
+		font-size: 1.1rem;
+		font-weight: 650;
+		margin-bottom: 0.5rem;
+	}
+
+	.principle-card p {
+		color: var(--text-secondary);
+		font-size: 0.875rem;
+		margin: 0;
+		line-height: 1.7;
+	}
+
+	@media (max-width: 640px) {
+		.hero-inner {
+			padding: 3.5rem 1.5rem 3rem;
+		}
+
+		.hero h1 {
+			font-size: 2rem;
+		}
+
+		.section-inner {
+			padding: 3rem 1.5rem;
+		}
+
+		.skills-grid,
+		.principles-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.social-links {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+</style>
