@@ -11,5 +11,6 @@ export const CATEGORIES = [
   { slug: 'jquery', name: 'jQuery', icon: '🔌', description: 'jQuery 选择器、事件、动画、Ajax' },
   { slug: 'mini-program', name: '小程序', icon: '📱', description: '微信小程序开发、组件、API' },
   { slug: 'react-native', name: 'React Native', icon: '📲', description: 'React Native 移动端开发' },
+  { slug: 'golang', name: 'Go 语言', icon: '🐹', description: 'Go 语言基础、数据结构、函数、接口、并发编程、数据库' },
   { slug: 'other', name: '其他笔记', icon: '📝', description: 'Git、工具技巧、Canvas、面试复习' },
 ];
