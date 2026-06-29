@@ -188,9 +188,9 @@ mongodb://[username:password@]host1[:port1][,...hostN[:portN]]
 ```
 
 [/[defaultauthdb][?options]]
-2
 
 ```go
+
 mongodb://wayne:wayne@mongodb0.example.com:27017
 ```
 
@@ -202,46 +202,26 @@ ion-example
 
 ```go
 package main
-```
 
-2
-
-```go
 import (
 "context"
 "fmt"
 "log"
 "time"
-```
 
-8
-
-```go
 "go.mongodb.org/mongo-driver/mongo"
 "go.mongodb.org/mongo-driver/mongo/options"
 )
-```
 
-12
-
-```go
 var client *mongo.Client
 var db *mongo.Database
 var users *mongo.Collection
-```
 
-16
-
-```go
 func init() {
 url := "mongodb://127.0.0.1:27017//"
 opts := options.Client()
 opts.ApplyURI(url).SetConnectTimeout(5 * time.Second)
-```
 
-21
-
-```go
 var err error
 client, err = mongo.Connect(context.TODO(), opts) // context.TODO() 空上
 ```
@@ -252,21 +232,13 @@ client, err = mongo.Connect(context.TODO(), opts) // context.TODO() 空上
 if err != nil {
 log.Fatal(err)
 }
-```
 
-27
-
-```go
 err = client.Ping(context.TODO(), nil)
 if err != nil {
 log.Fatal(err)
 }
 fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-```
 
-33
-
-```go
 // 不能用:=
 db = client.Database("test")   // 库
 users = db.Collection("users") // 集合，相当于表
@@ -317,11 +289,7 @@ ID    primitive.ObjectID `bson:"_id,omitempty"`
 Name string
 Age   int
 }
-```
 
-6
-
-```go
 func (u User) String() string {
 return fmt.Sprintf("<%s: %s,%d>", u.ID, u.Name, u.Age)
 }
@@ -352,11 +320,7 @@ log.Fatal(err)
 }
 fmt.Println(insertResult.InsertedID)
 }
-```
 
-10
-
-```go
 // 插入多条
 func insertMany() {
 jerry := User{Name: "jerry", Age: 20}
@@ -438,11 +402,7 @@ if err != nil {
 log.Fatal(err)
 }
 defer cursor.Close(context.TODO()) // 关闭游标
-```
 
-9
-
-```go
 var results []*User
 for cursor.Next(context.TODO()) {
 var u User
@@ -452,18 +412,10 @@ log.Fatal(err)
 }
 results = append(results, &u) // 装入容器
 }
-```
 
-19
-
-```go
 fmt.Println(results)
 }
-```
 
-22
-
-```go
 // 查多条，成批装入容器
 func findMany2() {
 filter := bson.D{} // 无条件，全部符合
@@ -473,11 +425,7 @@ if err != nil {
 log.Fatal(err)
 }
 defer cursor.Close(context.TODO()) // 关闭游标
-```
 
-32
-
-```go
 err = cursor.All(context.TODO(), &results)
 if err != nil {
 log.Fatal(err)
@@ -501,10 +449,7 @@ if err != nil {
 log.Fatal(err)
 }
 defer cursor.Close(context.TODO()) // 关闭游标
-```
 
-
-```go
 err = cursor.All(context.TODO(), &results)
 if err != nil {
 log.Fatal(err)
@@ -580,22 +525,14 @@ if err != nil {
 log.Fatal(err)
 }
 defer cursor.Close(context.TODO()) // 关闭游标
-```
 
-8
-
-```go
 err = cursor.All(context.TODO(), &results)
 if err != nil {
 log.Fatal(err)
 }
 fmt.Println(results)
 }
-```
 
-15
-
-```go
 findAll(filter, options.Find().SetLimit(2))
 ```
 
@@ -700,11 +637,7 @@ log.Fatal(err)
 }
 fmt.Println(dr.DeletedCount)
 }
-```
 
-10
-
-```go
 // 删除多个
 func deleteMany() {
 filter := bson.M{} // 没有条件，匹配所有文档

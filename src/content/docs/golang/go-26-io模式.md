@@ -47,11 +47,7 @@ selectors库内部抹平了IO多路复用不同技术调用差异，使用统一
 import selectors
 import socket
 from selectors import EVENT_READ
-```
 
-4
-
-```go
 html = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -64,11 +60,7 @@ html = """\
 </body>
 </html>\
 """.encode()
-```
 
-17
-
-```go
 response = """\
 HTTP/1.1 200 OK
 Date: Mon, 24 Oct 2022 20:04:23 GMT
@@ -76,33 +68,17 @@ Content-Type: text/html
 Content-Length: {}
 Connection: keep-alive
 Server: wayne.magedu.com
-```
 
-25
-
-```go
 """.format(len(html)).replace('\n', '\r\n').encode() + html
-```
 
-27
-
-```go
 selector = selectors.DefaultSelector()
 print(selector)    # Linux Epoll
-```
 
-30
-
-```go
 def accept(server):
 conn, raddr = server.accept()
 conn.setblocking(False)      # 要非阻塞
 selector.register(conn, EVENT_READ, recv)
-```
 
-35
-
-```go
 def recv(conn:socket.socket):
 try:
 data = conn.recv(1024)
@@ -114,28 +90,16 @@ print(e, "!!!!!!")
 finally:
 selector.unregister(conn)
 conn.close()
-```
 
-47
-
-```go
 if __name__ == '__main__':
 server = socket.socket()
 server.setblocking(False)      # 要非阻塞
 laddr = ('0.0.0.0', 9999)
 server.bind(laddr)
 server.listen(1024)
-```
 
-54
-
-```go
 selector.register(server, EVENT_READ, accept)
-```
 
-56
-
-```go
 while True:
 for key, event in selector.select(): # 阻塞到有事件
 key.data(key.fileobj)

@@ -19,17 +19,9 @@ defer后的语句必须是一个函数或方法的调用。
 
 ```go
 package main
-```
 
-2
-
-```go
 import "fmt"
-```
 
-4
-
-```go
 func main() {
 fmt.Println("start")
 defer fmt.Println(1)
@@ -46,17 +38,9 @@ fmt.Println("end")
 
 ```go
 package main
-```
 
-2
-
-```go
 import "fmt"
-```
 
-4
-
-```go
 func main() {
 count := 1
 fmt.Println("start")
@@ -79,16 +63,9 @@ fmt.Println("end")
 
 ```go
 package main
-```
 
-
-```go
 import "fmt"
-```
 
-4
-
-```go
 func main() {
 count := 1
 fmt.Println("start")
@@ -109,17 +86,9 @@ fmt.Println("end")
 
 ```go
 package main
-```
 
-2
-
-```go
 import "fmt"
-```
 
-4
-
-```go
 func main() {
 count := 1
 fmt.Println("start")

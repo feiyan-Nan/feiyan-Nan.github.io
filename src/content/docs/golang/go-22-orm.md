@@ -31,34 +31,18 @@ $ go get github.com/huandu/go-sqlbuilder
 
 
 package main
-```
 
-2
-
-```go
 import (
 "database/sql"
 "fmt"
 "log"
-```
 
-7
-
-```go
 _ "github.com/go-sql-driver/mysql"
 "github.com/huandu/go-sqlbuilder"
 )
-```
 
-11
-
-```go
 var db *sql.DB
-```
 
-13
-
-```go
 func init() {
 var err error
 db, err = sql.Open("mysql", "wayne:wayne@/test")
@@ -66,11 +50,7 @@ if err != nil {
 log.Panic(err)
 }
 }
-```
 
-21
-
-```go
 // 3 定义结构体
 type Emp struct { // 和字段对应的变量或结构体定义，最好和数据库中字段顺序对应
 emp_no      int
@@ -80,10 +60,7 @@ gender      byte
 birth_date string
 // hire_date      string
 }
-```
 
-
-```go
 func main() {
 query := sqlbuilder.
 Select("emp_no", "first_name", "last_name", "gender", "birth_date").
@@ -93,11 +70,7 @@ Offset(2).Limit(2).
 OrderBy("emp_no").Desc(). // 按照什么字段排序，降序
 String()                   // 输出为字符串，底层调用Build()
 fmt.Println(query)
-```
 
-41
-
-```go
 rows, err := db.Query(query)
 if err != nil {
 log.Fatal(err)
@@ -112,11 +85,7 @@ log.Fatal(err)
 fmt.Println(emp)
 }
 }
-```
 
-56
-
-```go
 SELECT emp_no, first_name, last_name, gender, birth_date FROM employees
 ```
 
@@ -140,11 +109,7 @@ builder.In("emp_no", 10008, 10010, 10020), // 参数化
 )
 query, args := builder.Build()
 fmt.Printf("%s\n%v\n", query, args) // args是参数
-```
 
-8
-
-```go
 SELECT emp_no, first_name, last_name, gender, birth_date FROM employees
 ```
 
@@ -152,11 +117,7 @@ WHERE emp_no IN (?, ?, ?)
 
 ```go
 [10008 10010 10020]
-```
 
-11
-
-```go
 rows, err := db.Query(query, args...) // 这样使用
 ```
 
@@ -180,11 +141,7 @@ id     int
 name string
 age    int
 }
-```
 
-6
-
-```go
 Student{100, "Tom", 20}
 Student{101, "Jerry", 18}
 ```
@@ -202,11 +159,7 @@ gorm.io/driver/mysql依赖github.com/go-sql-driver/mysql，可以认为它是对
 
 ```go
 $ go get -u github.com/go-sql-driver/mysql
-```
 
-2
-
-```go
 $ go get -u gorm.io/gorm
 $ go get -u gorm.io/driver/mysql
 ```
@@ -223,34 +176,18 @@ https://gorm.io/zh_CN/docs/connecting_to_the_database.html#MySQL
 
 ```go
 package main
-```
 
-2
-
-```go
 import (
 "fmt"
 "log"
-```
 
-6
-
-```go
 // _ "github.com/go-sql-driver/mysql" // 不要驱动了吗？
 "gorm.io/driver/mysql"
 "gorm.io/gorm"
 )
-```
 
-11
-
-```go
 var db *gorm.DB
-```
 
-13
-
-```go
 func init() {
 var err error
 // dsn := "wayne:wayne@/test"
@@ -297,11 +234,7 @@ last_name    string
 gender       byte
 birth_date string
 }
-```
 
-9
-
-```go
 // 符合约定的定义如下
 type student struct { // 默认表名students
 ID    int    // Id也可以
@@ -323,34 +256,18 @@ return "employees"
 
 ```go
 package main
-```
 
-2
-
-```go
 import (
 "fmt"
 "log"
-```
 
-6
-
-```go
 "gorm.io/driver/mysql"
 "gorm.io/gorm"
 "gorm.io/gorm/logger"
 )
-```
 
-11
-
-```go
 var db *gorm.DB
-```
 
-13
-
-```go
 func init() {
 var err error
 // dsn := "wayne:wayne@/test"
@@ -368,11 +285,7 @@ log.Panicln(err)
 }
 fmt.Println(db)
 }
-```
 
-26
-
-```go
 type Emp struct { // 默认表名emps
 EmpNo       int      `gorm:"primaryKey"` // 不是ID为主键
 FirstName string // 首字母大写，对应字段first_name
@@ -380,20 +293,12 @@ LastName    string
 Gender      byte
 BirthDate string
 }
-```
 
-34
-
-```go
 // 表名并没有遵守约定
 func (Emp) TableName() string {
 return "employees"
 }
-```
 
-39
-
-```go
 func main() {
 var e Emp
 result := db.Take(&e) // 等价于Limit 1，取1条
@@ -439,18 +344,10 @@ Age          byte        // byte=>tinyint unsigned
 Birthday time.Time // datetime
 Gender       byte        `gorm:"type:tinyint"`
 }
-```
 
-9
-
-```go
 // db.Migrator().DropTable(&Student{})
 db.Migrator().CreateTable(&Student{})
-```
 
-12
-
-```go
 CREATE TABLE `students` (
 `id` bigint AUTO_INCREMENT,
 `name` varchar(48) NOT NULL COMMENT '姓名',
@@ -494,11 +391,7 @@ Age         byte     // byte=>tinyint unsigned
 Birthday *time.Time // datetime
 Gender      byte     //`gorm:"type:tinyint"`
 }
-```
 
-8
-
-```go
 func (s *Student) String() string {
 return fmt.Sprintf("%d: %s %d", s.ID, s.Name, s.Age)
 }
@@ -602,9 +495,9 @@ dsn := "wayne:wayne@tcp(localhost:3306)/test?
 ```
 
 charset=utf8mb4&parseTime=true&loc=Local"
-2
 
 ```go
+
 // time/zoneinfo.go
 func LoadLocation(name string) (*Location, error) {
 if name == "" || name == "UTC" {
@@ -729,11 +622,7 @@ r := db.Where("name = ?", "Tom").Or(&Student{Name: "Jerry"}).Find(&students)
 
 ```go
 r := db.Order("id desc").Find(&students) // ORDER BY id desc
-```
 
-2
-
-```go
 r := db.Order("name, id desc").Find(&students)          // ORDER BY name,id
 ```
 
@@ -794,11 +683,7 @@ for rows.Next() {
 rows.Scan(&r.Name, &r.Count)
 fmt.Println(r, "@@@")
 }
-```
 
-13
-
-```go
 // 使用Scan填充容器，注意字段名要大写开头
 type Result struct {
 Name string
@@ -884,11 +769,7 @@ FirstName string
 LastName   string
 Salary     int
 }
-```
 
-7
-
-```go
 var results = []*Result{}
 db.Table("employees as e").Select("e.emp_no, first_name, last_name,
 ```
@@ -916,11 +797,7 @@ db.Save()方法会保存所有字段，对于没有主键的实例相当于Inser
 var student Student
 db.First(&student)
 fmt.Println(student)
-```
 
-5
-
-```go
 student.Age += 10
 student.Name = "Sam"
 // 后修改
@@ -939,11 +816,7 @@ r := db.Model(&Student{ID: 13}).Update("age", 11) // 更新符合条件的所有
 
 ```go
 // UPDATE `students` SET `age`=11 WHERE `id` = 13
-```
 
-3
-
-```go
 r := db.Model(&Student{}).Update("age", 11) // 没有指定ID或Where条件，是全表更新
 ```
 
@@ -989,11 +862,7 @@ fmt.Println(result.Error)
 
 result := db.Delete(&Student{}, 15) // 指定主键
 fmt.Println(result.Error)
-```
 
-3
-
-```go
 db.Delete(&Student{}, []int{15, 16, 18}) // DELETE FROM `students` WHERE
 ```
 

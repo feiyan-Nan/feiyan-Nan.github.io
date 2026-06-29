@@ -60,18 +60,10 @@ Insert语句
 ```go
 INSERT INTO table_name (col_name,...) VALUES (value1,...);
 -- 向表中插入一行数据，自增字段、缺省值字段、可为空字段可以不写
-```
 
-3
-
-```go
 INSERT INTO table_name SELECT ... ;
 -- 将select查询的结果插入到表中
-```
 
-6
-
-```go
 INSERT INTO table_name (col_name1,...) VALUES (value1,...) ON DUPLICATE KEY
 ```
 
@@ -82,9 +74,9 @@ UPDATE col_name1=value1,...;
 ```
 
 键在就更新部分字段。
-9
 
 ```go
+
 INSERT IGNORE INTO table_name (col_name,...) VALUES (value1,...);
 -- 如果主键冲突、唯一键冲突就忽略错误，返回一个警告。
 
@@ -112,21 +104,13 @@ where_definition]
 
 ```go
 -- IGNORE 意义同Insert语句
-```
 
-3
-
-```go
 UPDATE reg SET name='张三' WHERE id=5;
 
 
 -- 注意这一句非常危险，会更新所有数据
 UPDATE reg SET name = 'ben';
-```
 
-3
-
-```go
 -- 更新一定要加条件
 UPDATE reg SET name = 'ben', password = 'benpwd' WHERE id = 1;
 ```
@@ -164,21 +148,13 @@ select_expr, ...
 
 ```go
 SELECT 1;
-```
 
-2
-
-```go
 -- 最简单的查询
 SELECT * FROM employees;
 -- 字符串合并
 SELECT emp_no, first_name + last_name FROM employees;
 SELECT emp_no, CONCAT(first_name,' ',last_name) FROM employees;
-```
 
-8
-
-```go
 -- AS 定义别名，可选。写AS是一个好习惯
 SELECT emp_no as `no`, CONCAT(first_name,' ',last_name) name FROM employees
 ```
@@ -191,11 +167,7 @@ Limit子句
 ```go
 -- 返回5条记录
 SELECT * FROM employees emp LIMIT 5;
-```
 
-3
-
-```go
 -- 返回5条记录，偏移18条
 SELECT * FROM employees emp LIMIT 5 OFFSET 18;
 SELECT * FROM employees emp LIMIT 18, 5;
@@ -248,9 +220,9 @@ SELECT * FROM employees WHERE emp_no in (10001, 10002, 10010) ORDER BY emp_no
 ```
 
 DESC;
-3
 
 ```go
+
 SELECT * FROM dept_emp ORDER BY emp_no, dept_no DESC;
 ```
 
@@ -303,25 +275,21 @@ SELECT emp_no, SUM(salary), AVG(salary), COUNT(emp_no) from salaries WHERE
 ```
 
 emp_no < 10003;
-5
 
 ```go
+
 -- 分组
 SELECT emp_no FROM salaries GROUP BY emp_no;
 SELECT emp_no FROM salaries WHERE emp_no < 10003 GROUP BY emp_no;
-```
 
-9
-
-```go
 -- 按照不同emp_no分组，每组分别聚合
 SELECT emp_no, SUM(salary), AVG(salary), COUNT(emp_no) from salaries WHERE
 ```
 
 emp_no < 10003 GROUP BY emp_no;
-12
 
 ```go
+
 -- HAVING子句对分组结果过滤
 SELECT emp_no, SUM(salary), AVG(salary), COUNT(emp_no) from salaries GROUP
 ```
@@ -334,9 +302,9 @@ SELECT emp_no, SUM(salary), AVG(salary) AS sal_avg, COUNT(emp_no) from
 ```
 
 salaries GROUP BY emp_no HAVING sal_avg > 60000;
-17
 
 ```go
+
 -- 最后对分组过滤后的结果排序
 SELECT emp_no, SUM(salary), AVG(salary) AS sal_avg, COUNT(emp_no) from
 ```
@@ -349,9 +317,9 @@ salaries GROUP BY emp_no HAVING sal_avg > 60000 ORDER BY sal_avg;
 ```
 
 据。
-3
 
 ```go
+
 -- 分组
 SELECT emp_no, MAX(salary) FROM salaries; -- 10001   88958
 SELECT emp_no, MIN(salary) FROM salaries; -- 10001   40006
@@ -366,9 +334,9 @@ SELECT emp_no, MIN(salary) FROM salaries; -- 10001   40006
 
 资表中10001的工资最高，感觉是对的。但是，求最小工资的时候，明明最小工资是10003的40006，由
 于emp_no不是分组字段，导致最后被覆盖为10001。
-9
 
 ```go
+
 SELECT emp_no, MIN(salary) FROM salaries GROUP BY emp_no;
 上句才是正确的语义，按照不同员工emp_no工号分组，每一个人一组，每一个人有多个工资记录，按时
 ```
@@ -406,9 +374,9 @@ SELECT emp.emp_no, emp.first_name, gender FROM (SELECT * from employees WHERE
 ```
 
 emp_no > 10015) AS emp WHERE emp.emp_no < 10019 ORDER BY emp_no DESC;
-3
 
 ```go
+
 -- 标量子查询
 -- in或not in 一列值
 SELECT * FROM employees WHERE emp_no in (SELECT emp_no from employees WHERE
@@ -447,18 +415,10 @@ SELECT * FROM employees, salaries;
 -- 内连接，笛卡尔乘积 800行
 SELECT * from employees JOIN salaries;
 SELECT * from employees INNER JOIN salaries;
-```
 
-4
-
-```go
 -- ON等值连接 40行
 SELECT * from employees JOIN salaries ON employees.emp_no = salaries.emp_no;
-```
 
-7
-
-```go
 -- 自然连接，去掉了重复列，且自行使用employees.emp_no = salaries.emp_no的条件
 SELECT * from employees NATURAL JOIN salaries;
 ```
@@ -511,18 +471,10 @@ empno   name      mgr
 1       tom
 2       jerry     1
 3       ben       2
-```
 
-6
-
-```go
 -- 有领导的员工
 SELECT * from manager WHERE mgr IS NOT NULL
-```
 
-9
-
-```go
 -- 所有有领导的员工及其领导名字
 SELECT worker.*, mgr.name from manager worker INNER JOIN manager mgr ON
 ```
