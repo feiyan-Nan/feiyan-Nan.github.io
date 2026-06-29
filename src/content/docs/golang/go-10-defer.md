@@ -23,11 +23,11 @@ package main
 import "fmt"
 
 func main() {
-fmt.Println("start")
-defer fmt.Println(1)
-defer fmt.Println(2)
-defer fmt.Println(3)
-fmt.Println("end")
+    fmt.Println("start")
+    defer fmt.Println(1)
+    defer fmt.Println(2)
+    defer fmt.Println(3)
+    fmt.Println("end")
 }
 ```
 
@@ -42,14 +42,14 @@ package main
 import "fmt"
 
 func main() {
-count := 1
-fmt.Println("start")
-defer fmt.Println(count)
-count++
-defer fmt.Println(count)
-count++
-defer fmt.Println(count)
-fmt.Println("end")
+    count := 1
+    fmt.Println("start")
+    defer fmt.Println(count)
+    count++
+    defer fmt.Println(count)
+    count++
+    defer fmt.Println(count)
+    fmt.Println("end")
 }
 ```
 
@@ -64,17 +64,17 @@ fmt.Println("end")
 ```go
 package main
 
-import "fmt"
+ import "fmt"
 
-func main() {
-count := 1
-fmt.Println("start")
-defer func() { fmt.Println(count) }() // fmt.Println(count)
-count++
-defer fmt.Println(count)
-count++
-defer fmt.Println(count)
-fmt.Println("end")
+ func main() {
+     count := 1
+     fmt.Println("start")
+     defer func() { fmt.Println(count) }() // fmt.Println(count)
+     count++
+    defer fmt.Println(count)
+    count++
+    defer fmt.Println(count)
+    fmt.Println("end")
 }
 ```
 
@@ -90,18 +90,18 @@ package main
 import "fmt"
 
 func main() {
-count := 1
-fmt.Println("start")
-defer func(count int) { fmt.Println(count) }(count) //
+    count := 1
+    fmt.Println("start")
+    defer func(count int) { fmt.Println(count) }(count) //
 ```
 
 fmt.Println(count)
 
 ```go
-count++
-defer fmt.Println(count)
-count++
-defer fmt.Println(count)
-fmt.Println("end")
+     count++
+    defer fmt.Println(count)
+    count++
+    defer fmt.Println(count)
+    fmt.Println("end")
 }
 ```

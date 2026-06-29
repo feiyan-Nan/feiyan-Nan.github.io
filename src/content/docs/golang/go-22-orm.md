@@ -30,60 +30,60 @@ https://github.com/huandu/go-sqlbuilder，功能更强
 $ go get github.com/huandu/go-sqlbuilder
 
 
-package main
+  package main
 
-import (
-"database/sql"
-"fmt"
-"log"
+  import (
+       "database/sql"
+       "fmt"
+       "log"
 
-_ "github.com/go-sql-driver/mysql"
-"github.com/huandu/go-sqlbuilder"
-)
+       _ "github.com/go-sql-driver/mysql"
+       "github.com/huandu/go-sqlbuilder"
+  )
 
-var db *sql.DB
+  var db *sql.DB
 
-func init() {
-var err error
-db, err = sql.Open("mysql", "wayne:wayne@/test")
-if err != nil {
-log.Panic(err)
-}
-}
+  func init() {
+       var err error
+       db, err = sql.Open("mysql", "wayne:wayne@/test")
+       if err != nil {
+           log.Panic(err)
+       }
+  }
 
-// 3 定义结构体
-type Emp struct { // 和字段对应的变量或结构体定义，最好和数据库中字段顺序对应
-emp_no      int
-first_name string
-last_name   string
-gender      byte
-birth_date string
-// hire_date      string
-}
+  // 3 定义结构体
+  type Emp struct { // 和字段对应的变量或结构体定义，最好和数据库中字段顺序对应
+       emp_no      int
+       first_name string
+       last_name   string
+       gender      byte
+       birth_date string
+       // hire_date      string
+  }
 
 func main() {
-query := sqlbuilder.
-Select("emp_no", "first_name", "last_name", "gender", "birth_date").
-From("employees").
-Where("emp_no > 10015"). // 试一试Where("emp_no > ?")
-Offset(2).Limit(2).
-OrderBy("emp_no").Desc(). // 按照什么字段排序，降序
-String()                   // 输出为字符串，底层调用Build()
-fmt.Println(query)
+    query := sqlbuilder.
+        Select("emp_no", "first_name", "last_name", "gender", "birth_date").
+        From("employees").
+        Where("emp_no > 10015"). // 试一试Where("emp_no > ?")
+        Offset(2).Limit(2).
+        OrderBy("emp_no").Desc(). // 按照什么字段排序，降序
+        String()                   // 输出为字符串，底层调用Build()
+    fmt.Println(query)
 
-rows, err := db.Query(query)
-if err != nil {
-log.Fatal(err)
-}
-for rows.Next() {
-var emp Emp
-err = rows.Scan(&emp.emp_no, &emp.first_name, &emp.last_name,
-&emp.gender, &emp.birth_date) // 字段顺序和select的字段投影顺序一致
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(emp)
-}
+    rows, err := db.Query(query)
+    if err != nil {
+        log.Fatal(err)
+    }
+    for rows.Next() {
+        var emp Emp
+        err = rows.Scan(&emp.emp_no, &emp.first_name, &emp.last_name,
+            &emp.gender, &emp.birth_date) // 字段顺序和select的字段投影顺序一致
+        if err != nil {
+            log.Fatal(err)
+        }
+        fmt.Println(emp)
+    }
 }
 
 SELECT emp_no, first_name, last_name, gender, birth_date FROM employees
@@ -105,7 +105,7 @@ builder := sqlbuilder.Select("emp_no", "first_name", "last_name", "gender",
 ```go
 From("employees")
 builder.Where(
-builder.In("emp_no", 10008, 10010, 10020), // 参数化
+    builder.In("emp_no", 10008, 10010, 10020), // 参数化
 )
 query, args := builder.Build()
 fmt.Printf("%s\n%v\n", query, args) // args是参数
@@ -137,9 +137,9 @@ column => property      ，字段映射为属性
 
 ```go
 type Student struct {
-id     int
-name string
-age    int
+      id     int
+      name string
+      age    int
 }
 
 Student{100, "Tom", 20}
@@ -175,28 +175,28 @@ https://gorm.io/zh_CN/docs/connecting_to_the_database.html#MySQL
 
 
 ```go
-package main
+ package main
 
-import (
-"fmt"
-"log"
+ import (
+      "fmt"
+      "log"
 
-// _ "github.com/go-sql-driver/mysql" // 不要驱动了吗？
-"gorm.io/driver/mysql"
-"gorm.io/gorm"
+      // _ "github.com/go-sql-driver/mysql" // 不要驱动了吗？
+     "gorm.io/driver/mysql"
+     "gorm.io/gorm"
 )
 
 var db *gorm.DB
 
 func init() {
-var err error
-// dsn := "wayne:wayne@/test"
-dsn := "wayne:wayne@tcp(localhost:3306)/test?charset=utf8mb4"
-db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{}) // 不要用:=
-if err != nil {
-log.Panicln(err)
-}
-fmt.Println(db)
+     var err error
+     // dsn := "wayne:wayne@/test"
+     dsn := "wayne:wayne@tcp(localhost:3306)/test?charset=utf8mb4"
+     db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{}) // 不要用:=
+     if err != nil {
+           log.Panicln(err)
+     }
+     fmt.Println(db)
 }
 ```
 
@@ -228,18 +228,18 @@ GORM 倾向于约定优于配置
 ```go
 // 不符合约定的定义，很多都需要配置，直接用不行
 type Emp struct { // 默认表名emps
-emp_no       int      // 不是ID为主键，需要配置
-first_name string // 首字母未大写，也需要配置
-last_name    string
-gender       byte
-birth_date string
+     emp_no       int      // 不是ID为主键，需要配置
+     first_name string // 首字母未大写，也需要配置
+     last_name    string
+     gender       byte
+     birth_date string
 }
 
 // 符合约定的定义如下
 type student struct { // 默认表名students
-ID    int    // Id也可以
-Name string // 字段首字母要大写
-Age   int
+     ID    int    // Id也可以
+     Name string // 字段首字母要大写
+     Age   int
 }
 ```
 
@@ -247,7 +247,7 @@ Age   int
 ```go
 // 表名并没有遵守约定
 func (Emp) TableName() string {
-return "employees"
+    return "employees"
 }
 ```
 
@@ -258,53 +258,53 @@ return "employees"
 package main
 
 import (
-"fmt"
-"log"
+    "fmt"
+    "log"
 
-"gorm.io/driver/mysql"
-"gorm.io/gorm"
-"gorm.io/gorm/logger"
-)
+    "gorm.io/driver/mysql"
+    "gorm.io/gorm"
+    "gorm.io/gorm/logger"
+   )
 
-var db *gorm.DB
+   var db *gorm.DB
 
-func init() {
-var err error
-// dsn := "wayne:wayne@/test"
-dsn := "wayne:wayne@tcp(localhost:3306)/test?charset=utf8mb4"
-db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
-Logger: logger.Default.LogMode(logger.Info), // 日志级别，默认为Silent
+   func init() {
+       var err error
+       // dsn := "wayne:wayne@/test"
+       dsn := "wayne:wayne@tcp(localhost:3306)/test?charset=utf8mb4"
+       db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+           Logger: logger.Default.LogMode(logger.Info), // 日志级别，默认为Silent
 ```
 
 即打印慢SQL和错误
 
 ```go
-}) // 不要用:=
-if err != nil {
-log.Panicln(err)
-}
-fmt.Println(db)
+    }) // 不要用:=
+    if err != nil {
+        log.Panicln(err)
+    }
+    fmt.Println(db)
 }
 
 type Emp struct { // 默认表名emps
-EmpNo       int      `gorm:"primaryKey"` // 不是ID为主键
-FirstName string // 首字母大写，对应字段first_name
-LastName    string
-Gender      byte
-BirthDate string
+    EmpNo       int      `gorm:"primaryKey"` // 不是ID为主键
+    FirstName string // 首字母大写，对应字段first_name
+    LastName    string
+    Gender      byte
+    BirthDate string
 }
 
 // 表名并没有遵守约定
 func (Emp) TableName() string {
-return "employees"
+    return "employees"
 }
 
 func main() {
-var e Emp
-result := db.Take(&e) // 等价于Limit 1，取1条
-fmt.Println(result)
-fmt.Println(result.Error)
-fmt.Println(e)
+    var e Emp
+    result := db.Take(&e) // 等价于Limit 1，取1条
+    fmt.Println(result)
+    fmt.Println(result.Error)
+    fmt.Println(e)
 }
 ```
 
@@ -338,24 +338,24 @@ https://gorm.io/zh_CN/docs/migration.html#%E8%A1%A8
 ```go
 // 迁移后，主键默认不为空，其他字段默认都是能为空的
 type Student struct {
-ID           int         // 缺省主键bigint AUTO_INCREMENT
-Name         string      `gorm:"not null;type:varchar(48);comment:姓名"`
-Age          byte        // byte=>tinyint unsigned
-Birthday time.Time // datetime
-Gender       byte        `gorm:"type:tinyint"`
+       ID           int         // 缺省主键bigint AUTO_INCREMENT
+       Name         string      `gorm:"not null;type:varchar(48);comment:姓名"`
+       Age          byte        // byte=>tinyint unsigned
+       Birthday time.Time // datetime
+       Gender       byte        `gorm:"type:tinyint"`
 }
 
-// db.Migrator().DropTable(&Student{})
-db.Migrator().CreateTable(&Student{})
+   // db.Migrator().DropTable(&Student{})
+   db.Migrator().CreateTable(&Student{})
 
-CREATE TABLE `students` (
-`id` bigint AUTO_INCREMENT,
-`name` varchar(48) NOT NULL COMMENT '姓名',
-`age` tinyint unsigned,
-`birthday` datetime(3) NULL,
-`gender` tinyint,
-PRIMARY KEY (`id`)
-)
+   CREATE TABLE `students` (
+          `id` bigint AUTO_INCREMENT,
+          `name` varchar(48) NOT NULL COMMENT '姓名',
+          `age` tinyint unsigned,
+          `birthday` datetime(3) NULL,
+          `gender` tinyint,
+          PRIMARY KEY (`id`)
+   )
 ```
 
 由于int => bigint、string => longtext，这些默认转换不符合我们的要求，所以，在tag中使用type指定
@@ -380,41 +380,41 @@ Age           int            `gorm:"size:64"` 定义为8字节的bigint
 
 ```go
 type Student struct {
-ID          int      // 缺省主键bigint AUTO_INCREMENT
-Name        string   `gorm:"size:48"` //`gorm:"not
+    ID          int      // 缺省主键bigint AUTO_INCREMENT
+    Name        string   `gorm:"size:48"` //`gorm:"not
 ```
 
 null;type:varchar(48);comment:姓名"`
 
 ```go
-Age         byte     // byte=>tinyint unsigned
-Birthday *time.Time // datetime
-Gender      byte     //`gorm:"type:tinyint"`
+    Age         byte     // byte=>tinyint unsigned
+    Birthday *time.Time // datetime
+    Gender      byte     //`gorm:"type:tinyint"`
 }
 
 func (s *Student) String() string {
-return fmt.Sprintf("%d: %s %d", s.ID, s.Name, s.Age)
-}
+       return fmt.Sprintf("%d: %s %d", s.ID, s.Name, s.Age)
+   }
 
 
-// 新增一条
-n := time.Now()
-s := Student{Name: "Tom", Age: 20, Birthday: &n} // 构建实例
-fmt.Println(s)
-result := db.Create(&s) // 新增，传入指针
-fmt.Println(s) // 注意前后ID的变化
-fmt.Println(result.Error)
-fmt.Println(result.RowsAffected)
+    // 新增一条
+    n := time.Now()
+    s := Student{Name: "Tom", Age: 20, Birthday: &n} // 构建实例
+    fmt.Println(s)
+    result := db.Create(&s) // 新增，传入指针
+    fmt.Println(s) // 注意前后ID的变化
+    fmt.Println(result.Error)
+    fmt.Println(result.RowsAffected)
 
 
-// 新增多条
-n := time.Now()
-s := Student{Name: "Tom", Age: 20, Birthday: &n}
-fmt.Println(s)
-result := db.Create([]*Student{&s, &s, &s}) // 传入指针的切片
-fmt.Println(s)
-fmt.Println(result.Error)
-fmt.Println(result.RowsAffected)
+    // 新增多条
+    n := time.Now()
+    s := Student{Name: "Tom", Age: 20, Birthday: &n}
+    fmt.Println(s)
+    result := db.Create([]*Student{&s, &s, &s}) // 传入指针的切片
+    fmt.Println(s)
+    fmt.Println(result.Error)
+    fmt.Println(result.RowsAffected)
 ```
 
 查询一条
@@ -500,14 +500,14 @@ charset=utf8mb4&parseTime=true&loc=Local"
 
 // time/zoneinfo.go
 func LoadLocation(name string) (*Location, error) {
-if name == "" || name == "UTC" {
-return UTC, nil
-}
-if name == "Local" {
-return Local, nil
-}
-...省略
-}
+    if name == "" || name == "UTC" {
+        return UTC, nil
+    }
+    if name == "Local" {
+        return Local, nil
+       }
+       ...省略
+   }
 ```
 
 入、读取时区一致。
@@ -638,18 +638,18 @@ desc
 
 
 ```go
-r := db.Group("id").Find(&students) // GROUP BY `id`
-r := db.Group("name").Find(&students) // GROUP BY `name`
-r := db.Group("id").Group("name").Find(&students) // GROUP BY `id`,`name`
+ r := db.Group("id").Find(&students) // GROUP BY `id`
+ r := db.Group("name").Find(&students) // GROUP BY `name`
+ r := db.Group("id").Group("name").Find(&students) // GROUP BY `id`,`name`
 
 
-// SELECT name, count(id) as c FROM `students` GROUP BY `name`
-r := db.Select("name, count(id) as c").Group("name").Find(&students)
-// 但是students中没有属性来保存count的值
+ // SELECT name, count(id) as c FROM `students` GROUP BY `name`
+ r := db.Select("name, count(id) as c").Group("name").Find(&students)
+ // 但是students中没有属性来保存count的值
 // 使用Rows()返回所有行，自行获取字段值，但是要用Table指定表名
 type Result struct {
-name   string
-count int
+    name   string
+    count int
 }
 var r = Result{}
 rows, err := db.Table("students").Select("name, count(id) as
@@ -661,14 +661,14 @@ c").Group("name").Rows()
 fmt.Println(err)
 // 遍历每一行，填充2个属性的结构体实例
 for rows.Next() {
-rows.Scan(&r.name, &r.count)
-fmt.Println(r, "@@@")
+    rows.Scan(&r.name, &r.count)
+    fmt.Println(r, "@@@")
 }
 
 
 type Result struct { // 和Select的投影字段对应
-Name   string
-Count int
+    Name   string
+    Count int
 }
 var r = Result{}
 rows, err := db.Table("students").Select("name, count(id) as
@@ -680,14 +680,14 @@ c").Group("name").Having("c > 3").Rows()
 fmt.Println(err)
 // 遍历每一行，填充2个属性的结构体实例
 for rows.Next() {
-rows.Scan(&r.Name, &r.Count)
-fmt.Println(r, "@@@")
+    rows.Scan(&r.Name, &r.Count)
+    fmt.Println(r, "@@@")
 }
 
 // 使用Scan填充容器，注意字段名要大写开头
 type Result struct {
-Name string
-C      int // 或Count int `gorm:"column:c"`
+    Name string
+    C      int // 或Count int `gorm:"column:c"`
 }
 var rows = []*Result{}
 db.Table("students").Select("name, count(id) as c").Group("name").Having("c
@@ -697,30 +697,30 @@ db.Table("students").Select("name, count(id) as c").Group("name").Having("c
 
 ```go
 for i, r := range rows {
-fmt.Printf("%d, %T %#[2]v\n", i, r)
+    fmt.Printf("%d, %T %#[2]v\n", i, r)
 }
 ```
 
 Join
 
 ```go
-employees.emp_no,
-employees.first_name,
-employees.last_name,
-salaries.salary
+    employees.emp_no,
+    employees.first_name,
+    employees.last_name,
+    salaries.salary
 FROM
-employees
-INNER JOIN
-salaries
-ON
-employees.emp_no = salaries.emp_no
+    employees
+    INNER JOIN
+    salaries
+   ON
+        employees.emp_no = salaries.emp_no
 
 
 type Result struct {
-EmpNo       int
-FirstName string
-LastName     string
-Salary       int
+    EmpNo       int
+    FirstName string
+    LastName     string
+    Salary       int
 }
 ```
 
@@ -733,41 +733,41 @@ rows, err := db.Table("employees as e").Select("e.emp_no, first_name,
 last_name, salary").
 
 ```go
-Joins("join salaries as s on e.emp_no = s.emp_no").Rows()
+ Joins("join salaries as s on e.emp_no = s.emp_no").Rows()
 fmt.Println(err)
 var r Result
 for rows.Next() {
-rows.Scan(&r.EmpNo, &r.FirstName, &r.LastName, &r.Salary)
-fmt.Println(r, "###")
+    rows.Scan(&r.EmpNo, &r.FirstName, &r.LastName, &r.Salary)
+    fmt.Println(r, "###")
 }
 
 
-type Result struct {
-EmpNo       int
-FirstName string
-LastName     string
-Salary       int
-}
-var results = []*Result{}
-r := db.Table("employees as e").Select("e.emp_no, first_name, last_name,
+ type Result struct {
+     EmpNo       int
+     FirstName string
+     LastName     string
+     Salary       int
+ }
+ var results = []*Result{}
+ r := db.Table("employees as e").Select("e.emp_no, first_name, last_name,
 ```
 
 salary").
 
 ```go
-Joins("join salaries on e.emp_no = salaries.emp_no").Find(&results)
+     Joins("join salaries on e.emp_no = salaries.emp_no").Find(&results)
 fmt.Println(r)
 fmt.Println(r.Error)
 fmt.Println(r.RowsAffected)
 fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 for i, row := range results {
-fmt.Println(i, row)
+    fmt.Println(i, row)
 }
 type Result struct {
-EmpNo      int
-FirstName string
-LastName   string
-Salary     int
+     EmpNo      int
+     FirstName string
+     LastName   string
+     Salary     int
 }
 
 var results = []*Result{}
@@ -779,7 +779,7 @@ salary").
 ```go
 Joins("join salaries as s on e.emp_no = s.emp_no").Scan(&results)
 for i, r := range results {
-fmt.Println(i, r)
+     fmt.Println(i, r)
 }
 ```
 
@@ -802,7 +802,7 @@ student.Age += 10
 student.Name = "Sam"
 // 后修改
 db.Save(&student)
-fmt.Println(student)
+   fmt.Println(student)
 ```
 
 Update单个字段

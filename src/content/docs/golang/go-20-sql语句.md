@@ -81,8 +81,8 @@ INSERT IGNORE INTO table_name (col_name,...) VALUES (value1,...);
 -- 如果主键冲突、唯一键冲突就忽略错误，返回一个警告。
 
 
-INSERT INTO reg (loginname, `name`, `password`) VALUES ('tom', 'tom', 'tom');
-INSERT INTO reg (id, loginname, `name`, `password`) VALUES (5, 'tom', 'tom',
+ INSERT INTO reg (loginname, `name`, `password`) VALUES ('tom', 'tom', 'tom');
+ INSERT INTO reg (id, loginname, `name`, `password`) VALUES (5, 'tom', 'tom',
 ```
 
 'tom');
@@ -130,17 +130,17 @@ DELETE FROM reg WHERE id = 1;
 
 ```go
 SELECT
-[DISTINCT]
-select_expr, ...
-[FROM table_references
-[WHERE where_definition]
-[GROUP BY {col_name | expr | position}
-[ASC | DESC], ... [WITH ROLLUP]]
-[HAVING where_definition]
-[ORDER BY {col_name | expr | position}
-[ASC | DESC] , ...]
-[LIMIT {[offset,] row_count | row_count OFFSET offset}]
-[FOR UPDATE | LOCK IN SHARE MODE]]
+       [DISTINCT]
+       select_expr, ...
+       [FROM table_references
+       [WHERE where_definition]
+       [GROUP BY {col_name | expr | position}
+         [ASC | DESC], ... [WITH ROLLUP]]
+       [HAVING where_definition]
+       [ORDER BY {col_name | expr | position}
+            [ASC | DESC] , ...]
+          [LIMIT {[offset,] row_count | row_count OFFSET offset}]
+          [FOR UPDATE | LOCK IN SHARE MODE]]
 ```
 
 查询 查询的结果成为结果集recordset。
@@ -156,7 +156,7 @@ SELECT emp_no, first_name + last_name FROM employees;
 SELECT emp_no, CONCAT(first_name,' ',last_name) FROM employees;
 
 -- AS 定义别名，可选。写AS是一个好习惯
-SELECT emp_no as `no`, CONCAT(first_name,' ',last_name) name FROM employees
+   SELECT emp_no as `no`, CONCAT(first_name,' ',last_name) name FROM employees
 ```
 
 emp;
@@ -282,8 +282,8 @@ emp_no < 10003;
 SELECT emp_no FROM salaries GROUP BY emp_no;
 SELECT emp_no FROM salaries WHERE emp_no < 10003 GROUP BY emp_no;
 
--- 按照不同emp_no分组，每组分别聚合
-SELECT emp_no, SUM(salary), AVG(salary), COUNT(emp_no) from salaries WHERE
+   -- 按照不同emp_no分组，每组分别聚合
+   SELECT emp_no, SUM(salary), AVG(salary), COUNT(emp_no) from salaries WHERE
 ```
 
 emp_no < 10003 GROUP BY emp_no;
@@ -347,19 +347,19 @@ SELECT emp_no, MIN(salary) FROM salaries GROUP BY emp_no;
 ```go
 -- 单表较为复杂的语句
 SELECT
-emp_no,
-avg(salary) AS avg_salary
+     emp_no,
+     avg(salary) AS avg_salary
 FROM
-salaries
+     salaries
 WHERE
-salary > 70000
+     salary > 70000
 GROUP BY
-emp_no
-HAVING
-avg(salary) > 50000
-ORDER BY
-avg_salary DESC
-LIMIT 1;
+        emp_no
+   HAVING
+        avg(salary) > 50000
+   ORDER BY
+        avg_salary DESC
+   LIMIT 1;
 ```
 
 子查询
@@ -475,8 +475,8 @@ empno   name      mgr
 -- 有领导的员工
 SELECT * from manager WHERE mgr IS NOT NULL
 
--- 所有有领导的员工及其领导名字
-SELECT worker.*, mgr.name from manager worker INNER JOIN manager mgr ON
+   -- 所有有领导的员工及其领导名字
+   SELECT worker.*, mgr.name from manager worker INNER JOIN manager mgr ON
 ```
 
 mgr.id = worker.mgr

@@ -44,19 +44,19 @@ selectors库内部抹平了IO多路复用不同技术调用差异，使用统一
 
 
 ```go
-import selectors
-import socket
-from selectors import EVENT_READ
+ import selectors
+ import socket
+ from selectors import EVENT_READ
 
-html = """\
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>magedu</title>
+ html = """\
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+    <title>magedu</title>
 </head>
 <body>
-<h1>马哥教育www.magedu.com -- Multiplexing</h1>
+    <h1>马哥教育www.magedu.com -- Multiplexing</h1>
 </body>
 </html>\
 """.encode()
@@ -75,34 +75,34 @@ selector = selectors.DefaultSelector()
 print(selector)    # Linux Epoll
 
 def accept(server):
-conn, raddr = server.accept()
-conn.setblocking(False)      # 要非阻塞
-selector.register(conn, EVENT_READ, recv)
+   conn, raddr = server.accept()
+   conn.setblocking(False)      # 要非阻塞
+   selector.register(conn, EVENT_READ, recv)
 
 def recv(conn:socket.socket):
-try:
-data = conn.recv(1024)
-if not data:
-print(conn.getpeername(), "bye~~~")
-conn.send(response)
-except Exception as e:
-print(e, "!!!!!!")
-finally:
-selector.unregister(conn)
-conn.close()
+   try:
+          data = conn.recv(1024)
+          if not data:
+               print(conn.getpeername(), "bye~~~")
+          conn.send(response)
+   except Exception as e:
+           print(e, "!!!!!!")
+    finally:
+           selector.unregister(conn)
+           conn.close()
 
 if __name__ == '__main__':
-server = socket.socket()
-server.setblocking(False)      # 要非阻塞
-laddr = ('0.0.0.0', 9999)
-server.bind(laddr)
-server.listen(1024)
+    server = socket.socket()
+    server.setblocking(False)      # 要非阻塞
+    laddr = ('0.0.0.0', 9999)
+    server.bind(laddr)
+    server.listen(1024)
 
-selector.register(server, EVENT_READ, accept)
+    selector.register(server, EVENT_READ, accept)
 
-while True:
-for key, event in selector.select(): # 阻塞到有事件
-key.data(key.fileobj)
+    while True:
+           for key, event in selector.select(): # 阻塞到有事件
+               key.data(key.fileobj)
 ```
 
 数数上例有几个线程？

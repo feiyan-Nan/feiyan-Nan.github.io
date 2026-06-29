@@ -97,14 +97,14 @@ Yaml参考 https://www.w3cschool.cn/iqmrhf/dotvpozt.html
 
 ```go
 systemLog:
-destination: file
-path: 'o:/mongodb3.6/logs/mongod.log'
-logAppend:    true
+       destination: file
+       path: 'o:/mongodb3.6/logs/mongod.log'
+       logAppend:    true
 storage:
-dbPath: "o:/mongodb3.6/db"
+       dbPath: "o:/mongodb3.6/db"
 net:
-bindIp: "127.0.0.1"
-port: 27017
+       bindIp: "127.0.0.1"
+       port: 27017
 ```
 
 systemLog
@@ -131,10 +131,10 @@ serviceDisplayName mongo --install
 
 ```go
 storage:
-dbPath: "o:/mongodb3.6/db"
+       dbPath: "o:/mongodb3.6/db"
 net:
-bindIp: "127.0.0.1"
-port: 27017
+       bindIp: "127.0.0.1"
+       port: 27017
 ```
 
 没有配置日志，信息将显示在控制台中
@@ -204,54 +204,54 @@ ion-example
 package main
 
 import (
-"context"
-"fmt"
-"log"
-"time"
+     "context"
+     "fmt"
+     "log"
+     "time"
 
-"go.mongodb.org/mongo-driver/mongo"
-"go.mongodb.org/mongo-driver/mongo/options"
-)
+     "go.mongodb.org/mongo-driver/mongo"
+        "go.mongodb.org/mongo-driver/mongo/options"
+   )
 
-var client *mongo.Client
-var db *mongo.Database
-var users *mongo.Collection
+   var client *mongo.Client
+   var db *mongo.Database
+   var users *mongo.Collection
 
-func init() {
-url := "mongodb://127.0.0.1:27017//"
-opts := options.Client()
-opts.ApplyURI(url).SetConnectTimeout(5 * time.Second)
+   func init() {
+        url := "mongodb://127.0.0.1:27017//"
+        opts := options.Client()
+        opts.ApplyURI(url).SetConnectTimeout(5 * time.Second)
 
-var err error
-client, err = mongo.Connect(context.TODO(), opts) // context.TODO() 空上
+        var err error
+        client, err = mongo.Connect(context.TODO(), opts) // context.TODO() 空上
 ```
 
 下文
 
 ```go
-if err != nil {
-log.Fatal(err)
+       if err != nil {
+           log.Fatal(err)
+       }
+
+       err = client.Ping(context.TODO(), nil)
+      if err != nil {
+          log.Fatal(err)
+      }
+      fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+      // 不能用:=
+      db = client.Database("test")   // 库
+      users = db.Collection("users") // 集合，相当于表
 }
 
-err = client.Ping(context.TODO(), nil)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-// 不能用:=
-db = client.Database("test")   // 库
-users = db.Collection("users") // 集合，相当于表
-}
-
-
-// 断开连接放到其他函数里
-defer func() {
-if err := client.Disconnect(context.TODO()); err != nil {
-log.Fatal(err)
-}
-}()
-fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  // 断开连接放到其他函数里
+  defer func() {
+        if err := client.Disconnect(context.TODO()); err != nil {
+            log.Fatal(err)
+        }
+  }()
+  fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 ```
 
 基本概念
@@ -285,13 +285,13 @@ document
 
 ```go
 type User struct {
-ID    primitive.ObjectID `bson:"_id,omitempty"`
-Name string
-Age   int
+     ID    primitive.ObjectID `bson:"_id,omitempty"`
+     Name string
+     Age   int
 }
 
 func (u User) String() string {
-return fmt.Sprintf("<%s: %s,%d>", u.ID, u.Name, u.Age)
+     return fmt.Sprintf("<%s: %s,%d>", u.ID, u.Name, u.Age)
 }
 ```
 
@@ -313,29 +313,29 @@ ObjectId有12字节组成，参考 bson/primitive/objectid.go/NewObjectID()函�
 ```go
 // 插入一条
 func insertOne() {
-tom := User{Name: "tom", Age: 33}
-insertResult, err := users.InsertOne(context.TODO(), tom)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(insertResult.InsertedID)
+    tom := User{Name: "tom", Age: 33}
+    insertResult, err := users.InsertOne(context.TODO(), tom)
+    if err != nil {
+          log.Fatal(err)
+    }
+    fmt.Println(insertResult.InsertedID)
 }
 
-// 插入多条
-func insertMany() {
-jerry := User{Name: "jerry", Age: 20}
-ben := User{Name: "ben", Age: 16}
-insertManyResult, err := users.InsertMany(context.TODO(), []interface{}
+   // 插入多条
+   func insertMany() {
+       jerry := User{Name: "jerry", Age: 20}
+       ben := User{Name: "ben", Age: 16}
+       insertManyResult, err := users.InsertMany(context.TODO(), []interface{}
 ```
 
 {jerry, ben})
 
 ```go
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-fmt.Println(insertManyResult.InsertedIDs...)
+    if err != nil {
+          log.Fatal(err)
+    }
+    fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    fmt.Println(insertManyResult.InsertedIDs...)
 }
 ```
 
@@ -372,23 +372,23 @@ map类型为map[string]interface{}
 ```go
 // 找一条
 func findOne() {
-// 条件
-// filter := bson.D{{"name", "tom"}} // slice
-// filter := bson.D{{"name", bson.D{{"$eq", "tom"}}}}
-filter := bson.M{"name": "tom"} // map
-// filter := bson.M{"name": bson.M{"$ne": "jerry"}}
-// filter := bson.D{} // 没有条件全部都符合
-var u User
-err := users.FindOne(context.TODO(), filter).Decode(&u)
-if err != nil {
-if err == mongo.ErrNoDocuments {
-// 说明没有任何匹配文档
-log.Println("没有匹配的文档")
-return
-}
-log.Fatal(err)
-}
-fmt.Println(u)
+     // 条件
+     // filter := bson.D{{"name", "tom"}} // slice
+     // filter := bson.D{{"name", bson.D{{"$eq", "tom"}}}}
+     filter := bson.M{"name": "tom"} // map
+     // filter := bson.M{"name": bson.M{"$ne": "jerry"}}
+     // filter := bson.D{} // 没有条件全部都符合
+     var u User
+     err := users.FindOne(context.TODO(), filter).Decode(&u)
+     if err != nil {
+         if err == mongo.ErrNoDocuments {
+             // 说明没有任何匹配文档
+             log.Println("没有匹配的文档")
+             return
+         }
+         log.Fatal(err)
+     }
+     fmt.Println(u)
 }
 ```
 
@@ -396,43 +396,43 @@ fmt.Println(u)
 ```go
 // 查多条，遍历结果
 func findMany1() {
-filter := bson.M{} // 无条件，全部符合
-cursor, err := users.Find(context.TODO(), filter)
-if err != nil {
-log.Fatal(err)
-}
-defer cursor.Close(context.TODO()) // 关闭游标
+    filter := bson.M{} // 无条件，全部符合
+    cursor, err := users.Find(context.TODO(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer cursor.Close(context.TODO()) // 关闭游标
 
-var results []*User
-for cursor.Next(context.TODO()) {
-var u User
-err = cursor.Decode(&u)
-if err != nil {
-log.Fatal(err)
-}
-results = append(results, &u) // 装入容器
-}
+    var results []*User
+    for cursor.Next(context.TODO()) {
+        var u User
+        err = cursor.Decode(&u)
+        if err != nil {
+            log.Fatal(err)
+        }
+        results = append(results, &u) // 装入容器
+    }
 
-fmt.Println(results)
+    fmt.Println(results)
 }
 
 // 查多条，成批装入容器
 func findMany2() {
-filter := bson.D{} // 无条件，全部符合
-var results []*User
-cursor, err := users.Find(context.TODO(), filter)
-if err != nil {
-log.Fatal(err)
-}
-defer cursor.Close(context.TODO()) // 关闭游标
+    filter := bson.D{} // 无条件，全部符合
+    var results []*User
+    cursor, err := users.Find(context.TODO(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer cursor.Close(context.TODO()) // 关闭游标
 
-err = cursor.All(context.TODO(), &results)
-if err != nil {
-log.Fatal(err)
-}
-for i, r := range results {
-fmt.Println(i, r)
-}
+    err = cursor.All(context.TODO(), &results)
+    if err != nil {
+        log.Fatal(err)
+    }
+    for i, r := range results {
+        fmt.Println(i, r)
+    }
 }
 ```
 
@@ -443,19 +443,19 @@ fmt.Println(i, r)
 
 ```go
 func findByFilter(filter interface{}) {
-var results []*User
-cursor, err := users.Find(context.TODO(), filter)
-if err != nil {
-log.Fatal(err)
-}
-defer cursor.Close(context.TODO()) // 关闭游标
+    var results []*User
+    cursor, err := users.Find(context.TODO(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer cursor.Close(context.TODO()) // 关闭游标
 
-err = cursor.All(context.TODO(), &results)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(results)
-}
+      err = cursor.All(context.TODO(), &results)
+      if err != nil {
+              log.Fatal(err)
+      }
+      fmt.Println(results)
+  }
 ```
 
 比较符
@@ -519,21 +519,21 @@ bson.M{"name": bson.M{"$exists": true}} 标识所有具有Name字段的文档，
 
 ```go
 func findAll(filter interface{}, opt *options.FindOptions) {
-var results []*User
-cursor, err := users.Find(context.TODO(), filter, opt)
-if err != nil {
-log.Fatal(err)
-}
-defer cursor.Close(context.TODO()) // 关闭游标
+    var results []*User
+    cursor, err := users.Find(context.TODO(), filter, opt)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer cursor.Close(context.TODO()) // 关闭游标
 
-err = cursor.All(context.TODO(), &results)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(results)
-}
+    err = cursor.All(context.TODO(), &results)
+      if err != nil {
+          log.Fatal(err)
+      }
+      fmt.Println(results)
+  }
 
-findAll(filter, options.Find().SetLimit(2))
+  findAll(filter, options.Find().SetLimit(2))
 ```
 
 投影
@@ -586,26 +586,26 @@ $unset          移除字段                                {'$unset':{'Name':""
 ```go
 // 更新一个
 func updateOne() {
-filter := bson.M{"age": bson.M{"$exists": true}} // 所有有age字段的文档
-update := bson.M{"$inc": bson.M{"age": -5}}         // age字段减5
-ur, err := users.UpdateOne(context.TODO(), filter, update)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(ur.MatchedCount, ur.ModifiedCount)
-}
+    filter := bson.M{"age": bson.M{"$exists": true}} // 所有有age字段的文档
+    update := bson.M{"$inc": bson.M{"age": -5}}         // age字段减5
+    ur, err := users.UpdateOne(context.TODO(), filter, update)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(ur.MatchedCount, ur.ModifiedCount)
+   }
 
 
-// 更新多个
-func updateMany() {
-filter := bson.M{"age": bson.M{"$exists": true}} // 所有有age字段的文档
-update := bson.M{"$set": bson.M{"gender": "M"}}     // 为符合条件的文档设置
+    // 更新多个
+    func updateMany() {
+        filter := bson.M{"age": bson.M{"$exists": true}} // 所有有age字段的文档
+        update := bson.M{"$set": bson.M{"gender": "M"}}     // 为符合条件的文档设置
 ```
 
 gender字段
 
 ```go
-users.UpdateMany(context.TODO(), filter, update)
+    users.UpdateMany(context.TODO(), filter, update)
 }
 
 
@@ -621,7 +621,7 @@ filter := bson.M{"age": bson.M{"$exists": true}} // 所有有age字段的文档
 replacement := User{Name: "Sam", Age: 48}
 ur, err := users.ReplaceOne(context.TODO(), filter, replacement)
 if err != nil {
-log.Fatal(err)
+    log.Fatal(err)
 }
 fmt.Println(ur.MatchedCount, ur.ModifiedCount)
 ```
@@ -630,22 +630,22 @@ fmt.Println(ur.MatchedCount, ur.ModifiedCount)
 ```go
 // 删除一个
 func deleteOne() {
-filter := bson.M{} // 没有条件，匹配所有文档
-dr, err := users.DeleteOne(context.TODO(), filter)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(dr.DeletedCount)
+    filter := bson.M{} // 没有条件，匹配所有文档
+    dr, err := users.DeleteOne(context.TODO(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(dr.DeletedCount)
 }
 
 // 删除多个
 func deleteMany() {
-filter := bson.M{} // 没有条件，匹配所有文档
-dr, err := users.DeleteMany(context.TODO(), filter)
-if err != nil {
-log.Fatal(err)
-}
-fmt.Println(dr.DeletedCount)
+    filter := bson.M{} // 没有条件，匹配所有文档
+    dr, err := users.DeleteMany(context.TODO(), filter)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(dr.DeletedCount)
 }
 ```
 
