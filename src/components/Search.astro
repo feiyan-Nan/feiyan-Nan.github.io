@@ -26,7 +26,7 @@
 </div>
 
 <script>
-	let searchIndex: Array<{title: string; category: string; catName: string; url: string}> = [];
+	let searchIndex: Array<{title: string; category: string; catName: string; url: string; text: string}> = [];
 
 	async function loadIndex() {
 		if (searchIndex.length > 0) return;
@@ -39,8 +39,18 @@
 		if (!q) return [];
 		const terms = q.split(/\s+/);
 		return searchIndex
-			.filter((item) => terms.every((t) => item.title.toLowerCase().includes(t) || item.catName.toLowerCase().includes(t)))
-			.slice(0, 15);
+			.map((item) => {
+				const titleLower = item.title.toLowerCase();
+				const textLower = (item.text || '').toLowerCase();
+				const catLower = item.catName.toLowerCase();
+				const allMatch = terms.every((t) => titleLower.includes(t) || textLower.includes(t) || catLower.includes(t));
+				if (!allMatch) return null;
+				const titleHits = terms.filter((t) => titleLower.includes(t)).length;
+				return { ...item, score: titleHits * 2 + (allMatch ? 1 : 0), matchInContent: titleHits < terms.length };
+			})
+			.filter(Boolean)
+			.sort((a: any, b: any) => b.score - a.score)
+			.slice(0, 20);
 	}
 
 	const trigger = document.getElementById('search-trigger')!;
@@ -88,9 +98,9 @@
 		}
 		results.innerHTML = hits
 			.map(
-				(h) =>
+				(h: any) =>
 					`<a class="search-result" href="${h.url}">
-						<span class="result-cat">${h.catName}</span>
+						<span class="result-cat">${h.catName}${h.matchInContent ? ' · 内容匹配' : ''}</span>
 						<span class="result-title">${h.title}</span>
 					</a>`
 			)
