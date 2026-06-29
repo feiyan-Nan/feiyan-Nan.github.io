@@ -271,7 +271,7 @@ label span{
    display:block;
    width:34px; 
    height:34px; 
-   background:url(/images/docs/html-css/radio.png) no-repeat 0 0;} 
+   background:url(/images/docs/html-css/radio.svg) no-repeat 0 0;} 
 label input:checked + span{
  //当label里面input处于被选中状态时，改变兄弟元素span的属性; 
     background-position:0 -34px; 

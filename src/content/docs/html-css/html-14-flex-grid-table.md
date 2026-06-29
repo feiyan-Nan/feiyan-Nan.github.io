@@ -77,7 +77,7 @@ display: -ms-box;
 
 ## 三、新版弹性盒子
 
-![image-20200803112513487](/images/docs/html-css/image-20200803112513487.png)
+![image-20200803112513487](/images/docs/html-css/image-20200803112513487.svg)
 
 弹性盒子的定义
 

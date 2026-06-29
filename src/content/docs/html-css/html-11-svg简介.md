@@ -69,7 +69,7 @@ rx: 圆角矩形的水平半径
 
 ry: 圆角矩形的垂直半径
 
-![image](/html-11_Svg简介-01.png)
+![image](/images/docs/html-css/html-11_Svg简介-01.png)
 
 
 
@@ -85,7 +85,7 @@ r 圆的半径
 
 如果不定义圆心坐标，默认为（0,0）
 
-![image](/html-11_Svg简介-02.png)
+![image](/images/docs/html-css/html-11_Svg简介-02.png)
 
 
 
@@ -102,7 +102,7 @@ rx：水平半径
 
 ry：垂直半径
 
-![image](/html-11_Svg简介-03.png)
+![image](/images/docs/html-css/html-11_Svg简介-03.png)
 
 
 4.line：定义一条直线；
@@ -117,7 +117,7 @@ x2：x轴的结束坐标
 
 y2：y轴的结束坐标
 
-![image](/html-11_Svg简介-04.png)
+![image](/images/docs/html-css/html-11_Svg简介-04.png)
 
 
 5.polyline:用来创建任何只有直线的形状；
@@ -129,7 +129,7 @@ points：直线坐标点（不少于两个点）；
 <polyline points="10,0 110,0 110,100 10,100 10,0" fill="none" stroke="blue" />
 ```
 
-![image](/html-11_Svg简介-05.png)
+![image](/images/docs/html-css/html-11_Svg简介-05.png)
 
  
 
@@ -141,7 +141,7 @@ points：直线坐标点（不少于两个点）；
 <polygon points="100,10 150,100 50,100" />
 ```
 
-![image](/html-11_Svg简介-06.png)
+![image](/images/docs/html-css/html-11_Svg简介-06.png)
 
  
 

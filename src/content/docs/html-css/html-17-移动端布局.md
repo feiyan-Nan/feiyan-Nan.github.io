@@ -285,7 +285,7 @@ function Resize(){
 
 5. 手机安装证书：进入spy-debugger启动之后的官网 --> 点击请求抓包 --> 点击RootCA -->  手机扫描该二维码进行安装证书
 
-   ![image-20200619160334023](/images/docs/html-css/image-20200619160334023.png)
+   ![image-20200619160334023](/images/docs/html-css/image-20200619160334023.svg)
 
 6. 之后进入在手机里面就可以直接访问地址了，可以通过spy-debugger启动的网站，进行查看console或html元素等信息；
 
@@ -298,11 +298,11 @@ function Resize(){
 3. 手机安装chrome移动版浏览器，并输入地址，即可以调试；
 4. 出现的地址中，点击`devices`直接就可以调试了；
 
-![image-20200720113115699](/images/docs/html-css/image-20200720113115699.png)
+![image-20200720113115699](/images/docs/html-css/image-20200720113115699.svg)
 
 效果图如下：
 
-![image-20200720113127408](/images/docs/html-css/image-20200720113127408.png)
+![image-20200720113127408](/images/docs/html-css/image-20200720113127408.svg)
 
 
 

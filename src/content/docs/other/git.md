@@ -137,7 +137,7 @@ git push
 * `release`：release-4.0.0；release为预上线分支，发布提测
 * `hotfix`：hotfix-***；线上出现紧急问题时，需要及时修复，以master分支为基线，创建hotfix分支，修复完成后，需要合并到master分支和develop分支
 
-![img](/images/docs/other/3412338-53aedee7d8081020.png)
+![img](/images/docs/other/3412338-53aedee7d8081020.svg)
 
 主分支master建议每次上线打上tag
 
@@ -683,7 +683,7 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 
 两种打开方式：
 
-![image-20200729003318782](/images/docs/other/image-20200729003318782.png)![image-20200814102618851](/images/docs/other/image-20200814102618851.png)
+![image-20200729003318782](/images/docs/other/image-20200729003318782.svg)![image-20200814102618851](/images/docs/other/image-20200814102618851.svg)
 
 
 
@@ -695,7 +695,7 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 
 ## 十二、github搜索技巧
 
-![image](/images/docs/other/image-20200715162848585.png)
+![image](/images/docs/other/image-20200715162848585.svg)
 
 
 
