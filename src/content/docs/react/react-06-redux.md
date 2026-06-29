@@ -515,7 +515,7 @@ ReactDOM.render(
 ```
 5. 接下来打开浏览器调试工具，就可以查看到浏览器缓存的数据
 
-![image](//images/docs/react/react-04_其他Api，动画-03.png)
+![image](/images/docs/react/react-04_其他Api，动画-03.png)
 
 
 

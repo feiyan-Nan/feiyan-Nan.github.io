@@ -27,7 +27,7 @@ order: 5
 </transition>
 ```
 
-![image](//images/docs/vue/vue-05_过渡_生命周期-01.png)
+![image](/images/docs/vue/vue-05_过渡_生命周期-01.png)
 
 图中可见：
 
@@ -222,7 +222,7 @@ afterEnter (el) {
 
 捕获错误：`errorHandler`
 
-![image](//images/docs/vue/vue-05_过渡_生命周期-02.png)
+![image](/images/docs/vue/vue-05_过渡_生命周期-02.png)
 
 生命周期图解：
 

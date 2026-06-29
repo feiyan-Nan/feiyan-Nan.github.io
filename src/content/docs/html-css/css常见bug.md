@@ -203,13 +203,13 @@ $borderColor: #E1E0DF;
 
 给input框设置：background-color: transparent;
 
-![image](//images/docs/html-css/css小方法-10.png)
+![image](/images/docs/html-css/css小方法-10.png)
 
 
 
 ## 解决移动端报红
 
-![image](//images/docs/html-css/css小方法-11.png)
+![image](/images/docs/html-css/css小方法-11.png)
 
 由于没有e.preventDefalt引起的，给触摸范围的元素添加css属性
 

@@ -102,7 +102,7 @@ x,y：起始位置，w,h：要清除的内容宽高；
 
 圆形的坐标系：
 
-![image](//images/docs/other/canvas-01.png)
+![image](/images/docs/other/canvas-01.png)
 
 
 ## 六、碰撞的小球

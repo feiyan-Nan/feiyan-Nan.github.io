@@ -194,7 +194,7 @@ margin:左右管用，上下不管用，
 }
 ```
 
-![image](//images/docs/html-css/css小方法-09.png)
+![image](/images/docs/html-css/css小方法-09.png)
 
 解析：
 

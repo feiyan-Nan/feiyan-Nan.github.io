@@ -10,7 +10,7 @@ order: 8
   1. lib下面是我们所有的插件，创建一个新的插件名叫heny；
   2. heny下的目录是lib和index.js还有一个test.vue文件；
 
-![image-20200406215427082](//images/docs/vue/vue-09_插件开发.png)
+![image-20200406215427082](/images/docs/vue/vue-09_插件开发.png)
 
 * 在heny/index.js文件写入
 
@@ -126,11 +126,11 @@ if (inBrowser && window.Vue) {
 
    之后执行npm login命令登录npm；
 
-   ![image-20200406220434803](//images/docs/vue/vue-09_插件开发_02.png)
+   ![image-20200406220434803](/images/docs/vue/vue-09_插件开发_02.png)
 
 4. 进入到项目的根目录，直接输入npm publish就发布成功了，直接到npmjs官网搜索包的name名字就有了；当然也可以直接在项目npm i 名字；
 
-   ![image-20200406220541606](//images/docs/vue/vue-09_插件开发_03.png)
+   ![image-20200406220541606](/images/docs/vue/vue-09_插件开发_03.png)
 
    注意：第二次发布时，必须修改version版本号才能发布，否则会报错；
 

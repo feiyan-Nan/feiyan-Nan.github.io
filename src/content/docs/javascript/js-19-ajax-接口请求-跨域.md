@@ -212,7 +212,7 @@ xhr.send();
 
 前提是响应头里面有Content-Length这个字段告知当前文件的总字节数，如下图所示：
 
-![image-20200514201221347](//images/docs/javascript/js-16_闭包、高阶函数、ajax.png)
+![image-20200514201221347](/images/docs/javascript/js-16_闭包、高阶函数、ajax.png)
 
 
 
@@ -364,7 +364,7 @@ export const getData = (url,data={},method='get')=>{
 
 * 在需要请求数据的地方引入getData即可
 
-![image](//images/docs/javascript/vue-07_接口请求_跨域-01.png)
+![image](/images/docs/javascript/vue-07_接口请求_跨域-01.png)
 
 
 
@@ -372,7 +372,7 @@ export const getData = (url,data={},method='get')=>{
 
 业务情况：多次点击页面，会造成很多接口的请求，可以在页面切换关闭上一个请求，效果如下
 
-![image-20200611161648246](//images/docs/javascript/image-20200611161648246.png)
+![image-20200611161648246](/images/docs/javascript/image-20200611161648246.png)
 
 在请求拦截器中作处理：
 

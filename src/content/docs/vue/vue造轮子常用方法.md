@@ -644,9 +644,9 @@ component: () => import('src/views/home')
 
 1. 测试方法，如果有keep-alive的路由；
 
-   ![image-20200406224427526](//images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_01.png)
+   ![image-20200406224427526](/images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_01.png)
 
-   ![image-20200406224453979](//images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_02.png)
+   ![image-20200406224453979](/images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_02.png)
 
 2. 将需要缓存和不需要缓存的视图组件区分开
 
@@ -727,7 +727,7 @@ component: () => import('src/views/home')
 
    注意：keep-alive要求被包裹到的组件都有自己的名字，上面push和splice的是router的name名字，建议把router的name名字和组件的name名字设成一样的；
 
-   ![image-20200406224653969](//images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_03.png)
+   ![image-20200406224653969](/images/docs/vue/Vue%E9%80%A0%E8%BD%AE%E5%AD%90_03.png)
 
 
 
