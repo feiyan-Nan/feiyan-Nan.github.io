@@ -9,7 +9,7 @@
 	</button>
 </div>
 
-<div class="search-overlay" id="search-overlay" hidden>
+<div class="search-overlay" id="search-overlay">
 	<div class="search-modal">
 		<div class="search-input-wrapper">
 			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -50,13 +50,13 @@
 
 	function open() {
 		loadIndex();
-		overlay.hidden = false;
+		overlay.classList.add('open');
 		document.body.style.overflow = 'hidden';
 		setTimeout(() => input.focus(), 50);
 	}
 
 	function close() {
-		overlay.hidden = true;
+		overlay.classList.remove('open');
 		document.body.style.overflow = '';
 		input.value = '';
 		results.innerHTML = '<p class="search-hint">输入关键词开始搜索</p>';
@@ -70,7 +70,7 @@
 	document.addEventListener('keydown', (e) => {
 		if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
 			e.preventDefault();
-			overlay.hidden ? open() : close();
+			overlay.classList.contains('open') ? close() : open();
 		}
 		if (e.key === 'Escape') close();
 	});
@@ -133,10 +133,14 @@
 		z-index: 200;
 		background: rgba(0, 0, 0, 0.4);
 		backdrop-filter: blur(4px);
-		display: flex;
+		display: none;
 		align-items: flex-start;
 		justify-content: center;
 		padding-top: min(20vh, 120px);
+	}
+
+	.search-overlay.open {
+		display: flex;
 	}
 
 	.search-modal {
